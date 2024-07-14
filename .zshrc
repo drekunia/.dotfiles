@@ -120,6 +120,8 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# fzf
 . /usr/share/doc/fzf/examples/key-bindings.zsh
 
+# Console Ninja VS Code Extension
 PATH=~/.console-ninja/.bin:$PATH
