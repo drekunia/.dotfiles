@@ -151,9 +151,9 @@ TMUX_DEFAULT_SESSION="tmux"
 alias t="tmux -u a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux -u new -s ${TMUX_DEFAULT_SESSION}"
 
 # keychain
-if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
-  eval `keychain --eval --quiet id_rsa`
-fi
+# if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
+#   eval `keychain --eval --quiet id_rsa`
+# fi
 
 if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
   eval `keychain --eval --quiet id_ed25519`
