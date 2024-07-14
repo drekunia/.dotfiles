@@ -84,8 +84,6 @@ plugins=(
   you-should-use
   zsh-bat
   asdf
-  fd
-  ripgrep
 )
 
 source $ZSH/oh-my-zsh.sh
