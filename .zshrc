@@ -127,6 +127,9 @@ alias zshconfig="nano ~/.zshrc"
 #   return $(whence $1 >/dev/null)
 # }
 
+# ripgrep
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
 # fzf
 if [ $(command -v fzf) ]; then
   # Set up fzf keybindings and fuzzy completion
