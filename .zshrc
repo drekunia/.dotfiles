@@ -85,6 +85,7 @@ plugins=(
   zsh-bat
   asdf
   fd
+  ripgrep
 )
 
 source $ZSH/oh-my-zsh.sh
