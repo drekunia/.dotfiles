@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -78,12 +78,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	you-should-use
-	zsh-bat
-	asdf
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  you-should-use
+  zsh-bat
+  asdf
+  fd
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -114,14 +115,54 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="nano ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Functions
+# Returns whether the given command is executable or aliased
+# _has() {
+#   return $(whence $1 >/dev/null)
+# }
+
 # fzf
-. /usr/share/doc/fzf/examples/key-bindings.zsh
+if [ $(command -v fzf) ]; then
+  # Set up fzf keybindings and fuzzy completion
+  . /usr/share/doc/fzf/examples/key-bindings.zsh
+  . /usr/share/doc/fzf/examples/completion.zsh
+fi
+
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --line-range :50 {}'"
+
+export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
+# tmux
+# Use 256 color for tmux
+alias tmux="TERM=screen-256color-bce tmux"
+# Attemtp to take over existing sessions before creating a new tmux session.
+TMUX_DEFAULT_SESSION="tmux"
+alias t="tmux -u a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux -u new -s ${TMUX_DEFAULT_SESSION}"
+
+# keychain
+if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
+  eval `keychain --eval --quiet id_rsa`
+fi
+
+if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
+  eval `keychain --eval --quiet id_ed25519`
+fi
+
+# manpager
+# MANPAGER
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+export MANROFFOPT="-c"
 
 # Console Ninja VS Code Extension
 PATH=~/.console-ninja/.bin:$PATH
