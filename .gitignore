@@ -1,22 +1,30 @@
-# Node
-npm-debug.log
-node_modules/
-
 # Mac
 **/.DS_Store
 **/._.DS_Store
 .DS_Store
 ._.DS_Store
 .DS_Store?
+._*
 .localized
 .AppleDouble
 .LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 # Windows
 Thumbs.db
 ehthumbs.db
 *:Zone.Identifier
-System Volume Information
 
 # WebStorm
 .idea/
@@ -25,34 +33,22 @@ System Volume Information
 *~
 *.swp
 
-# General
-log/
-*.log
-
-# Icon must end with two \r
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
 # VS Code
 .vscode/
 
 # Git
 *.orig
+
+# Node
+npm-debug.log
+node_modules/
+
+# Elixir
+.elixir_ls/
+
+# Icon must end with two \r
+Icon
+
+# General
+log/
+*.log
