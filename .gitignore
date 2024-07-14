@@ -1,11 +1,13 @@
 # Node
 npm-debug.log
+node_modules/
 
 # Mac
 .DS_Store
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+.localized
 
 # Windows
 Thumbs.db
@@ -15,8 +17,9 @@ Thumbs.db
 # WebStorm
 .idea/
 
-# vi
+# vi/vim
 *~
+*.swp
 
 # General
 log/
