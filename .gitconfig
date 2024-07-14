@@ -36,7 +36,7 @@
   # Don't paginate output by default
   pager = cat
   # Global ignore file (not shared)
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore
   # Global shared hooks directory
   # hooksPath = ~/.githooks
   #

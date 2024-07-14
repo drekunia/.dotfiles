@@ -1,4 +1,26 @@
+# Node
+npm-debug.log
+
+# Mac
 .DS_Store
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+
+# Windows
+Thumbs.db
+*:Zone.Identifier
+**/*:Zone.Identifier
+
+# WebStorm
+.idea/
+
+# vi
+*~
+
+# General
+log/
+*.log
+
+# etc...
+
