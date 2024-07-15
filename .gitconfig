@@ -158,3 +158,5 @@
   prereleaseSuffix = .beta
   prereleaseSuffix = -rc
   prereleaseSuffix = .rc
+[commit]
+	gpgsign = true
