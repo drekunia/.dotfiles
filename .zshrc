@@ -126,6 +126,19 @@ alias zshconfig="nano ~/.zshrc"
 #   return $(whence $1 >/dev/null)
 # }
 
+# zsh
+HISTSIZE=100000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
@@ -135,6 +148,8 @@ if [ $(command -v fzf) ]; then
   . /usr/share/doc/fzf/examples/key-bindings.zsh
   . /usr/share/doc/fzf/examples/completion.zsh
 fi
+
+# eval "$(fzf --zsh)"
 
 export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
 export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
@@ -161,7 +176,6 @@ if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
   eval `keychain --eval --quiet id_ed25519`
 fi
 
-# manpager
 # MANPAGER
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
