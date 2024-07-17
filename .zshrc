@@ -83,7 +83,7 @@ plugins=(
   zsh-syntax-highlighting
   you-should-use
   zsh-bat
-  asdf
+  mise
 )
 
 source $ZSH/oh-my-zsh.sh
