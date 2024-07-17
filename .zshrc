@@ -114,7 +114,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nano ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -180,6 +180,10 @@ fi
 # MANPAGER
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
+
+# Neovim
+alias vi=nvim
+alias vim=nvim
 
 # Console Ninja VS Code Extension
 PATH=~/.console-ninja/.bin:$PATH
