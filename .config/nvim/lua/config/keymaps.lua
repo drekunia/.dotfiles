@@ -79,3 +79,7 @@ vim.keymap.set("n", "te", ":tabedit")
 vim.keymap.set("n", "<tab>", ":tabnext<Return>", { noremap = true, silent = true })
 vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent = true })
 vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent = true })
+
+-- Keymaps for dealing with word wrapping
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

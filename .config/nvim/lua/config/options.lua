@@ -2,9 +2,13 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Enable absolute line numbers and relative line numbers
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Tab settings
 vim.opt.tabstop = 2
@@ -51,3 +55,4 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.title = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.breakindent = true
