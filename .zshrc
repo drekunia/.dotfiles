@@ -182,6 +182,7 @@ export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
 
 # Neovim
+alias v=$EDITOR
 alias vi=$EDITOR
 alias vim=$EDITOR
 alias nvim=$EDITOR
