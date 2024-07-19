@@ -186,5 +186,8 @@ alias vi=$EDITOR
 alias vim=$EDITOR
 alias nvim=$EDITOR
 
+# GnuPG
+export GPG_TTY=$(tty)
+
 # Console Ninja VS Code Extension
 PATH=~/.console-ninja/.bin:$PATH
