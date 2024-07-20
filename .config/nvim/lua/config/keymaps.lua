@@ -75,9 +75,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_D')
 
 -- Tab management
-vim.keymap.set("n", "te", ":tabedit")
+vim.keymap.set("n", "<C-tab>", ":tabedit")
 vim.keymap.set("n", "<tab>", ":tabnext<Return>", { noremap = true, silent = true })
-vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent = true })
 vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent = true })
 
 -- Keymaps for dealing with word wrapping
