@@ -158,7 +158,7 @@
   prereleaseSuffix = .beta
   prereleaseSuffix = -rc
   prereleaseSuffix = .rc
-[commit]
-	gpgsign = true
+# [commit]
+  # gpgsign = true
 [init]
 	defaultBranch = main
