@@ -1,3 +1,5 @@
+export GPG_TTY=$(tty)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -187,8 +189,8 @@ alias vi=$EDITOR
 alias vim=$EDITOR
 alias nvim=$EDITOR
 
-# GnuPG
-export GPG_TTY=$(tty)
+# Laravel Sail
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 # Console Ninja VS Code Extension
 PATH=~/.console-ninja/.bin:$PATH
