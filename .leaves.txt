@@ -19,6 +19,7 @@ neovim
 obs-studio
 ripgrep
 spotify-client
+sqlite
 stow
 tmux
 torbrowser-launcer
