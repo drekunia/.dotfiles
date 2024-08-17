@@ -13,6 +13,7 @@ jq
 keychain
 lazygit
 luarocks
+lutris
 meld
 mise
 neovim
@@ -20,10 +21,13 @@ obs-studio
 ripgrep
 spotify-client
 sqlite
+steam
 stow
 tmux
 torbrowser-launcer
 virtualbox
+vlc
 wget
 wireguard
 xsel
+
