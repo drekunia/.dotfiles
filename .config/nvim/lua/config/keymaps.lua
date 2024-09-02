@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Moves to the nex or previous search result and centers the cursor
+-- Moves to the next or previous search result and centers the cursor
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
