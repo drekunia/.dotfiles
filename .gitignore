@@ -38,3 +38,6 @@ ehthumbs.db
 
 # Git
 *.orig
+
+# Config Parts
+lazy-lock.json
