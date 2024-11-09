@@ -185,4 +185,5 @@ alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 # Console Ninja VS Code Extension
 PATH=~/.console-ninja/.bin:$PATH
 
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
