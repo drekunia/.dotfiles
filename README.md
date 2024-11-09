@@ -51,7 +51,6 @@ Shell Tools
 
 Terminal
 
-- `oh-my-zsh`
 - `starship`
 - `wezterm`
 - `zsh`
