@@ -35,15 +35,50 @@ sudo apt install stow
 ```
 
 ## Installation
-### Shell Tools (highly recommended)
-- bat
-- eza
-- fd (fd-find)
-- fzf
-- rg (ripgrep)
-- zoxide
+
+### Packages to install
+
+Shell Tools
+
+- `bat`
+- `eza`
+- `fd` `fd-find`
+- `fzf`
+- `rg` `ripgrep`
+- `tmux`
+- `zoxide`
+
+Terminal
+
+- `oh-my-zsh`
+- `starship`
+- `wezterm`
+- `zsh`
+
+Text Editor
+
+- `neovim`
+  (i use `lazyvim`, requires `lazygit`, `luarocks`, `xsel` and the shell tools above)
+- `code` (VS Code)
+- `vim`
+
+Version Manager
+
+- `git-lfs`
+- `git`
+- `mise`
+
+Optional
+
+- Docker Engine (not Docker Desktop)
+- `copyq`
+- `dbeaver-ce`
+- `gh` (Github CLI)
+- `keychain`
+- `wireguard`
 
 ### The dotfiles
+
 First, check out the .dotfiles repo in your $HOME directory using git
 
 ```bash
