@@ -60,11 +60,11 @@ truncation_symbol = '…/'
 truncate_to_repo = false
 
 [directory.substitutions]
-'Documents' = '󰈙'
+'Documents' = '󰈙 '
 'Downloads' = ' '
 'Music' = ' '
 'Pictures' = ' '
-read_only = '󰌾'
+read_only = '󰌾 '
 
 [git_branch]
 style = 'fg:green'
@@ -76,7 +76,7 @@ style = 'fg:red'
 format = '([$all_status$ahead_behind]($style) )'
 
 [git_commit]
-tag_symbol = '  '
+tag_symbol = ' '
 
 [fossil_branch]
 symbol = " "
