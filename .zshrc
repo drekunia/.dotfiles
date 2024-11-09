@@ -133,7 +133,7 @@ setopt hist_find_no_dups
 setopt nobeep
 
 # ripgrep
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
 # fzf
 if [ $(command -v fzf) ]; then
