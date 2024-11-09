@@ -1,7 +1,7 @@
 """" Enable Vundle: vim plugin manager
 
 " required before Vundle initialization
-" set nocompatible        " disable compatibility mode with vi
+set nocompatible        " disable compatibility mode with vi
 " filetype off            " disable filetype detection (but re-enable later, see below)
 
 " set the runtime path to include Vundle, and initialize
@@ -23,7 +23,7 @@ set lazyredraw          " redraw screen only when we need to
 set showmatch           " highlight matching parentheses / brackets [{()}]
 set laststatus=2        " always show statusline (even with only single window)
 set ruler               " show line and column number of the cursor on right side of statusline
-" set visualbell          " blink cursor on error, instead of beeping
+set visualbell          " blink cursor on error, instead of beeping
 
 
 """" Key Bindings
@@ -65,6 +65,6 @@ nnoremap <CR> :nohlsearch<CR><CR>
 
 """" Miscellaneous settings that might be worth enabling
 
-"set cursorline         " highlight current line
-"set background=dark    " configure Vim to use brighter colors
-"set autoread           " autoreload the file in Vim if it has been changed outside of Vim
+set cursorline         " highlight current line
+set background=dark    " configure Vim to use brighter colors
+set autoread           " autoreload the file in Vim if it has been changed outside of Vim
