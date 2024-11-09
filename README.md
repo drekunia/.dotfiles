@@ -35,7 +35,15 @@ sudo apt install stow
 ```
 
 ## Installation
+### Shell Tools (highly recommended)
+- bat
+- eza
+- fd (fd-find)
+- fzf
+- rg (ripgrep)
+- zoxide
 
+### The dotfiles
 First, check out the .dotfiles repo in your $HOME directory using git
 
 ```bash
