@@ -44,7 +44,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 -- Highlight column 80 to guide line break
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 
 -- Encoding UTF-8
 vim.scriptencoding = "utf-8"
