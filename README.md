@@ -40,13 +40,14 @@ sudo apt install stow
 
 Shell Tools
 
-- `bat`
+- `bat` (`batcat`)
 - `eza`
-- `fd` `fd-find`
+- `fd` (`fd-find`)
 - `fzf`
-- `rg` `ripgrep`
+- `rg` (`ripgrep`)
 - `tmux`
-- `zoxide`
+- `tree`
+- `zoxide` (`z` `zi`)
 
 Terminal
 
