@@ -48,6 +48,12 @@ alias which-command=whence
 #   return $(whence $1 >/dev/null)
 # }
 
+# Laravel Sail
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
+# Console Ninja VS Code Extension
+PATH=~/.console-ninja/.bin:$PATH
+
 # bat
 if command -v batcat >/dev/null 2>&1; then
   # Save the original system `cat` under `rcat`
@@ -90,24 +96,6 @@ fi
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
 
-# fzf
-if [ $(command -v fzf) ]; then
-  # Set up fzf keybindings and fuzzy completion
-  . /usr/share/doc/fzf/examples/key-bindings.zsh
-  . /usr/share/doc/fzf/examples/completion.zsh
-
-  # eval "$(fzf --zsh)"
-
-  export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
-  export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
-
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --line-range :50 {}'"
-
-  export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
-  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
-fi
-
 # tmux
 if [ $(command -v tmux) ]; then
   # Use 256 color for tmux
@@ -127,11 +115,23 @@ if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
   eval `keychain --eval --quiet id_ed25519`
 fi
 
-# Laravel Sail
-alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+# fzf
+if [ $(command -v fzf) ]; then
+  export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+  export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
 
-# Console Ninja VS Code Extension
-PATH=~/.console-ninja/.bin:$PATH
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --line-range :50 {}'"
+
+  export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
+  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
+  # Set up fzf keybindings and fuzzy completion
+  . /usr/share/doc/fzf/examples/key-bindings.zsh
+  . /usr/share/doc/fzf/examples/completion.zsh
+
+  # source <(fzf --zsh)
+fi
 
 # zoxide
 if [ $(command -v zoxide) ]; then
