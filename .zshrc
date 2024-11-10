@@ -5,7 +5,7 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # ZSH
 HISTSIZE=100000
-HISTFILE=$ZSH_CUSTOM/.zsh_history
+HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -20,28 +20,24 @@ setopt nobeep
 export ZSH_CUSTOM=$HOME/.zsh
 export ZSH_PLUGINS=$ZSH_CUSTOM/plugins
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
 # ZSH plugins
 source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_PLUGINS/you-should-use/you-should-use.plugin.zsh
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
 
-# Aliases
+# Additional configs
+# export MANPATH="/usr/local/man:$MANPATH"
+# export LANG=en_US.UTF-8
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# General aliases
 alias md='mkdir -p'
 alias rd=rmdir
 alias which-command=whence
@@ -61,6 +57,7 @@ if command -v batcat >/dev/null 2>&1; then
   # the `bat` program is named `batcat` on these systems
   alias cat="$(which batcat)"
   export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+  export MANROFFOPT="-c"
 elif command -v bat >/dev/null 2>&1; then
   # Save the original system `cat` under `rcat`
   alias rcat="$(which cat)"
@@ -68,49 +65,58 @@ elif command -v bat >/dev/null 2>&1; then
   # For all other systems
   alias cat="$(which bat)"
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  export MANROFFOPT="-c"
 fi
 
-export MANROFFOPT="-c"
-
 # eza
-alias ls='eza --color=always --group-directories-first --icons'
-alias ll='eza -la --icons --octal-permissions --group-directories-first'
-alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
-alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons' 
-alias la='eza --long --all --group --group-directories-first'
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
-alias lS='eza -1 --color=always --group-directories-first --icons'
-alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
-alias l.="eza -a | grep -E '^\.'"
-
+if [ $(command -v eza) ]; then
+  alias ls='eza --color=always --group-directories-first --icons'
+  alias ll='eza -la --icons --octal-permissions --group-directories-first'
+  alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
+  alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons' 
+  alias la='eza --long --all --group --group-directories-first'
+  alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
+  alias lS='eza -1 --color=always --group-directories-first --icons'
+  alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
+  alias l.="eza -a | grep -E '^\.'"
+else
+  alias ls='ls --color=tty'
+  alias ll='ls -lh'
+  alias l='ls -lah'
+  alias la='ls -lAh'
+  alias lsa'ls -lah'
+fi
 
 # ripgrep
-export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
 
 # fzf
 if [ $(command -v fzf) ]; then
   # Set up fzf keybindings and fuzzy completion
   . /usr/share/doc/fzf/examples/key-bindings.zsh
   . /usr/share/doc/fzf/examples/completion.zsh
+
+  # eval "$(fzf --zsh)"
+
+  export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+  export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
+
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --line-range :50 {}'"
+
+  export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
+  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 fi
 
-# eval "$(fzf --zsh)"
-
-export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
-export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
-
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --line-range :50 {}'"
-
-export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
-
 # tmux
-# Use 256 color for tmux
-alias tmux="TERM=screen-256color-bce tmux"
-# Attemtp to take over existing sessions before creating a new tmux session.
-TMUX_DEFAULT_SESSION="tmux"
-alias t="tmux -u a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux -u new -s ${TMUX_DEFAULT_SESSION}"
+if [ $(command -v tmux) ]; then
+  # Use 256 color for tmux
+  alias tmux="TERM=screen-256color-bce tmux"
+
+  # Attemtp to take over existing sessions before creating a new tmux session.
+  TMUX_DEFAULT_SESSION="tmux"
+  alias t="tmux -u a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux -u new -s ${TMUX_DEFAULT_SESSION}"
+fi
 
 # keychain
 # if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
@@ -128,8 +134,10 @@ alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 PATH=~/.console-ninja/.bin:$PATH
 
 # zoxide
-export _ZO_RESOLVE_SYMLINKS=1
-eval "$(zoxide init zsh --cmd cd)"
+if [ $(command -v zoxide) ]; then
+  export _ZO_RESOLVE_SYMLINKS=1
+  eval "$(zoxide init zsh --cmd cd)"
+fi
 
-# Starship
+# starship
 eval "$(starship init zsh)"
