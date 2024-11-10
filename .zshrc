@@ -127,6 +127,8 @@ if [ $(command -v fzf) ]; then
 
   if type batcat > /dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="--preview 'batcat --color=always {}'"
+  else
+    export FZF_CTRL_T_OPTS="--preview 'cat -n {}'"
   fi
 
   if type eza > /dev/null 2>&1; then
