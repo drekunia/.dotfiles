@@ -166,5 +166,12 @@ if [ $(command -v zoxide) ]; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
+# mise
+if [ $(command -v mise) ]; then
+  eval "$(mise activate zsh)"
+fi
+
 # starship
-eval "$(starship init zsh)"
+if [ $(command -v starship) ]; then
+  eval "$(starship init zsh)"
+fi
