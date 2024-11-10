@@ -117,20 +117,45 @@ fi
 
 # fzf
 if [ $(command -v fzf) ]; then
-  export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
   export FZF_DEFAULT_OPTS='--no-height --color=bg+:#1a1b26,gutter:#32344a,pointer:#f7768e,info:#9ece6a,hl:#7aa2f7,hl+:#7dcfff'
 
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_CTRL_T_OPTS="--preview 'batcat --color=always {}'"
+  if type fd > /dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden --follow --exclude .git'
+  fi
 
-  export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
-  export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {} | head -50'"
+  if type batcat > /dev/null 2>&1; then
+    export FZF_CTRL_T_OPTS="--preview 'batcat --color=always {}'"
+  fi
+
+  if type eza > /dev/null 2>&1; then
+    export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {}'"
+  elif type tree > /dev/null 2>&1; then
+    export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+  fi
 
   # Set up fzf keybindings and fuzzy completion
+  # source <(fzf --zsh)
   . /usr/share/doc/fzf/examples/key-bindings.zsh
   . /usr/share/doc/fzf/examples/completion.zsh
 
-  # source <(fzf --zsh)
+  # Kill process
+  fzf-kill() {
+    local pid
+    pid=$(ps -ef | sed 1d | fzf --header-lines=1 --preview 'echo {}' --header 'Select a process to kill' | awk '{print $2}')
+    if [ -n "$pid" ]; then
+      kill -9 "$pid"
+    fi
+  }
+
+  # SSH selection
+  # fzf-ssh() {
+  #   local host
+  #   host=$(cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sort | uniq | fzf) && zle accept-line
+  #   BUFFER="ssh $host"
+  #   zle end-of-line
+  # }
 fi
 
 # zoxide
