@@ -41,13 +41,12 @@ sudo apt install stow
 Shell Tools
 
 - `bat` (`batcat`)
-- `eza`
 - `fd` (`fd-find`)
 - `fzf`
+- `eza` (can be replaced with `tree` for `fzf` preview)
+- `zoxide` (`z` `zi`)
 - `rg` (`ripgrep`)
 - `tmux`
-- `tree`
-- `zoxide` (`z` `zi`)
 
 Terminal
 
@@ -60,22 +59,16 @@ Text Editor
 - `neovim`
   (i use `lazyvim`, requires `lazygit`, `luarocks`, `xsel` and the shell tools above)
 - `code` (VS Code)
-- `vim`
 
 Version Manager
 
-- `git-lfs`
 - `git`
+- `git-lfs`
 - `mise`
 
 Optional
 
-- Docker Engine (not Docker Desktop)
-- `copyq`
-- `dbeaver-ce`
-- `gh` (Github CLI)
 - `keychain`
-- `wireguard`
 
 ### The dotfiles
 
