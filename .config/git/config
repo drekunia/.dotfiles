@@ -5,7 +5,7 @@
   email = drekunia@gmail.com
   signingkey = 8B7DA20869C73E1F
 [core]
-  pager = batcat
+  pager = cat
   editor = code --wait
   excludesfile = ~/.config/git/ignore
   # Global shared hooks directory
@@ -112,7 +112,7 @@
 [alias]
   # List available aliases
   aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
-  # Display online log
+  # Display oneline log
   l = log --oneline --graph --decorate
   # Display tree-like log, because default log is a pain…
   # lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
