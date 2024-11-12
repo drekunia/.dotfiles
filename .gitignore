@@ -38,3 +38,7 @@ ehthumbs.db
 
 # Git
 *.orig
+
+# General
+log/
+*.log
