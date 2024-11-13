@@ -68,6 +68,7 @@ Version Manager
 
 Optional
 
+- `docker`
 - `keychain`
 
 ### The dotfiles
