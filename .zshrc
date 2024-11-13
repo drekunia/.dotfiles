@@ -97,25 +97,6 @@ fi
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
 
-# tmux
-if [ $(command -v tmux) ]; then
-  # Use 256 color for tmux
-  alias tmux="TERM=screen-256color-bce tmux"
-
-  # Attemtp to take over existing sessions before creating a new tmux session.
-  TMUX_DEFAULT_SESSION="tmux"
-  alias t="tmux -u a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux -u new -s ${TMUX_DEFAULT_SESSION}"
-fi
-
-# keychain
-# if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
-#   eval `keychain --eval --quiet id_rsa`
-# fi
-
-if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
-  eval `keychain --eval --quiet id_ed25519`
-fi
-
 # fzf
 if [ $(command -v fzf) ]; then
   export FZF_DEFAULT_OPTS='--no-height --color=bg+:#1a1b26,gutter:#32344a,pointer:#f7768e,info:#9ece6a,hl:#7aa2f7,hl+:#7dcfff'
@@ -159,6 +140,32 @@ if [ $(command -v fzf) ]; then
   #   BUFFER="ssh $host"
   #   zle end-of-line
   # }
+fi
+
+# tmux
+if [ $(command -v tmux) ]; then
+  # Use 256 color for tmux
+  alias tmux="TERM=screen-256color-bce tmux"
+
+  # Attemtp to take over existing sessions before creating a new tmux session.
+  TMUX_DEFAULT_SESSION="tmux"
+  alias t="tmux -u a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux -u new -s ${TMUX_DEFAULT_SESSION}"
+fi
+
+# docker
+if [ $(command -v docker) ]; then
+  # default local postgresql environment
+  alias run-local-postgres='docker run -d --name local_postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v local_pgdata:/var/lib/postgresql/data postgres:alpine'
+  alias stop-local-postgres='docker stop local_postgres'
+fi
+
+# keychain
+# if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
+#   eval `keychain --eval --quiet id_rsa`
+# fi
+
+if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
+  eval `keychain --eval --quiet id_ed25519`
 fi
 
 # zoxide
