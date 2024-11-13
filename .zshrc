@@ -10,6 +10,10 @@ SAVEHIST=$HISTSIZE
 HISTDUP=erase
 
 setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHDMINUS
+
 setopt BANG_HIST              # Treat the '!' character specially during expansion.
 setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
 setopt HIST_EXPIRE_DUPS_FIRST # Expire a duplicate event first when trimming history.
@@ -36,8 +40,25 @@ export ZSH_CUSTOM=$HOME/.zsh
 # fi
 
 # General aliases
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -- -='cd -'
+alias 1='cd -1'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
 alias md='mkdir -p'
 alias rd=rmdir
+
 alias which-command=whence
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 
