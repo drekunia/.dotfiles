@@ -18,12 +18,11 @@ setopt hist_find_no_dups
 setopt nobeep
 
 export ZSH_CUSTOM=$HOME/.zsh
-export ZSH_PLUGINS=$ZSH_CUSTOM/plugins
 
-# ZSH plugins
-source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_PLUGINS/you-should-use/you-should-use.plugin.zsh
+# Additional configs
+# export MANPATH="/usr/local/man:$MANPATH"
+# export LANG=en_US.UTF-8
+# export ARCHFLAGS="-arch $(uname -m)"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -32,26 +31,28 @@ source $ZSH_PLUGINS/you-should-use/you-should-use.plugin.zsh
 #   export EDITOR='nvim'
 # fi
 
-# Additional configs
-# export MANPATH="/usr/local/man:$MANPATH"
-# export LANG=en_US.UTF-8
-# export ARCHFLAGS="-arch $(uname -m)"
-
 # General aliases
 alias md='mkdir -p'
 alias rd=rmdir
 alias which-command=whence
 
-# Functions
-# Returns whether the given command is executable or aliased
-# _has() {
-#   return $(whence $1 >/dev/null)
-# }
+# ZSH plugins
+export ZSH_PLUGINS=$ZSH_CUSTOM/plugins
+
+source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_PLUGINS/you-should-use/you-should-use.plugin.zsh
+
+source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=magenta,bold'
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=''
 
 # Laravel Sail
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
-# Console Ninja VS Code Extension
+# VS Code Extensions
 PATH=~/.console-ninja/.bin:$PATH
 
 # bat
@@ -132,14 +133,6 @@ if [ $(command -v fzf) ]; then
       kill -9 "$pid"
     fi
   }
-
-  # SSH selection
-  # fzf-ssh() {
-  #   local host
-  #   host=$(cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sort | uniq | fzf) && zle accept-line
-  #   BUFFER="ssh $host"
-  #   zle end-of-line
-  # }
 fi
 
 # tmux
