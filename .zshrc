@@ -1,18 +1,22 @@
+# ---------------------------------------------------------------------------------
+# Header Setup
+# ---------------------------------------------------------------------------------
+
+# GPG_TTY required for no GUI environtment like WSL
 export GPG_TTY=$(tty)
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# ---------------------------------------------------------------------------------
 # ZSH
+# ---------------------------------------------------------------------------------
+
+# - ZSH history
 HISTSIZE=10000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
-
-setopt AUTO_CD
-setopt AUTO_PUSHD
-setopt PUSHD_IGNORE_DUPS
-setopt PUSHDMINUS
 
 setopt BANG_HIST              # Treat the '!' character specially during expansion.
 setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
@@ -25,21 +29,16 @@ setopt HIST_SAVE_NO_DUPS      # Do not write a duplicate event to the history fi
 setopt HIST_VERIFY            # Do not execute immediately upon history expansion.
 setopt NO_BEEP
 
+alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
+
+# - ZSH directory related config
 export ZSH_CUSTOM=$HOME/.zsh
 
-# Additional configs
-# export MANPATH="/usr/local/man:$MANPATH"
-# export LANG=en_US.UTF-8
-# export ARCHFLAGS="-arch $(uname -m)"
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHDMINUS
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# General aliases
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
@@ -59,10 +58,7 @@ alias 9='cd -9'
 alias md='mkdir -p'
 alias rd=rmdir
 
-alias which-command=whence
-alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
-
-# ZSH plugins
+# - ZSH plugins
 export ZSH_PLUGINS=$ZSH_CUSTOM/plugins
 
 _source_plugin() {
@@ -92,13 +88,61 @@ if [[ -e "$ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search
   # export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_TIMEOUT=1
 fi
 
+# - ZSH additional configs
+# export MANPATH="/usr/local/man:$MANPATH"
+# export LANG=en_US.UTF-8
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# General aliases
+alias which-command=whence
+
+# ---------------------------------------------------------------------------------
+# Development Environment
+# ---------------------------------------------------------------------------------
+
+# - Text Editor
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# - Docker
+if [ $(command -v docker) ]; then
+  # default local postgresql environment
+  alias run-local-postgres='docker run -d --name local_postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v local_pgdata:/var/lib/postgresql/data postgres:alpine'
+  alias stop-local-postgres='docker stop local_postgres'
+fi
+
+# - Version manager
+# mise
+if [ $(command -v mise) ]; then
+  eval "$(mise activate zsh)"
+fi
+
+# - Other tools
 # Laravel Sail
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
-# VS Code Extensions
+# - VS Code Extensions
+# Console Ninja
 PATH=~/.console-ninja/.bin:$PATH
 
-# bat
+# ---------------------------------------------------------------------------------
+# Shell Tools
+# ---------------------------------------------------------------------------------
+
+# - keychain
+# if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
+#   eval `keychain --eval --quiet id_rsa`
+# fi
+
+if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
+  eval `keychain --eval --quiet id_ed25519`
+fi
+
+# - bat
 if command -v batcat >/dev/null 2>&1; then
   # Save the original system `cat` under `rcat`
   alias rcat="$(which cat)"
@@ -118,7 +162,7 @@ elif command -v bat >/dev/null 2>&1; then
   export MANROFFOPT="-c"
 fi
 
-# eza
+# - eza
 if [ $(command -v eza) ]; then
   alias ls='eza --color=always --group-directories-first --icons'
   alias ll='ls -la --octal-permissions'
@@ -138,10 +182,10 @@ else
   alias lsa'ls -lah'
 fi
 
-# ripgrep
+# - ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
 
-# fzf
+# - fzf
 if [ $(command -v fzf) ]; then
   export FZF_DEFAULT_OPTS='--no-height --color=bg+:#1a1b26,gutter:#32344a,pointer:#f7768e,info:#9ece6a,hl:#7aa2f7,hl+:#7dcfff'
 
@@ -178,7 +222,7 @@ if [ $(command -v fzf) ]; then
   }
 fi
 
-# tmux
+# - tmux
 if [ $(command -v tmux) ]; then
   # Use 256 color for tmux
   alias tmux="TERM=screen-256color-bce tmux"
@@ -188,34 +232,15 @@ if [ $(command -v tmux) ]; then
   alias t="tmux -u a -d -t ${TMUX_DEFAULT_SESSION} 2> /dev/null || tmux -u new -s ${TMUX_DEFAULT_SESSION}"
 fi
 
-# docker
-if [ $(command -v docker) ]; then
-  # default local postgresql environment
-  alias run-local-postgres='docker run -d --name local_postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v local_pgdata:/var/lib/postgresql/data postgres:alpine'
-  alias stop-local-postgres='docker stop local_postgres'
-fi
-
-# keychain
-# if [[ $(command -v keychain) && -e ~/.ssh/id_rsa ]]; then
-#   eval `keychain --eval --quiet id_rsa`
-# fi
-
-if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
-  eval `keychain --eval --quiet id_ed25519`
-fi
-
-# zoxide
+# - zoxide
 if [ $(command -v zoxide) ]; then
   export _ZO_RESOLVE_SYMLINKS=1
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
-# mise
-if [ $(command -v mise) ]; then
-  eval "$(mise activate zsh)"
-fi
-
-# starship
+# - starship
 if [ $(command -v starship) ]; then
   eval "$(starship init zsh)"
 fi
+
+# ---------------------------------------------------------------------------------
