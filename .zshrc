@@ -8,13 +8,14 @@ HISTSIZE=100000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
+setopt autocd
 setopt appendhistory
 setopt sharehistory
-setopt hist_ignore_space
 setopt hist_ignore_all_dups
-setopt hist_save_no_dups
 setopt hist_ignore_dups
+setopt hist_ignore_space
 setopt hist_find_no_dups
+setopt hist_save_no_dups
 setopt nobeep
 
 export ZSH_CUSTOM=$HOME/.zsh
@@ -39,15 +40,32 @@ alias which-command=whence
 # ZSH plugins
 export ZSH_PLUGINS=$ZSH_CUSTOM/plugins
 
-source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_PLUGINS/you-should-use/you-should-use.plugin.zsh
+_source_plugin() {
+  local plugin_path="$ZSH_PLUGINS/$1"
 
-source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=magenta,bold'
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=''
+  if [[ -e "$plugin_path" ]]; then
+    source "$plugin_path"
+  fi
+}
+
+_source_plugin "zsh-autosuggestions/zsh-autosuggestions.zsh"
+_source_plugin "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+_source_plugin "you-should-use/you-should-use.plugin.zsh"
+
+if [[ -e "$ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
+  source $ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+  bindkey "$terminfo[kcuu1]" history-substring-search-up
+  bindkey "$terminfo[kcud1]" history-substring-search-down
+
+  export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=magenta,bold'
+  export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=''
+  # export HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
+  # export HISTORY_SUBSTRING_SEARCH_FUZZY=''
+  export HISTORY_SUBSTRING_SEARCH_PREFIXED=true
+  # export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
+  # export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_TIMEOUT=1
+fi
 
 # Laravel Sail
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
@@ -78,14 +96,14 @@ fi
 # eza
 if [ $(command -v eza) ]; then
   alias ls='eza --color=always --group-directories-first --icons'
-  alias ll='eza -la --icons --octal-permissions --group-directories-first'
-  alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
-  alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons' 
-  alias la='eza --long --all --group --group-directories-first'
-  alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
-  alias lS='eza -1 --color=always --group-directories-first --icons'
-  alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
-  alias ltag='eza --tree --all --git-ignore --color=always --group-directories-first --icons'
+  alias ll='ls -la --octal-permissions'
+  alias l='ls -bGF --header --git'
+  alias llm='ls -lbGd --header --git --sort=modified' 
+  alias la='ls --long --all --group'
+  alias lx='ls -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
+  alias lS='ls -1'
+  alias lt='ls --tree --level=2'
+  alias ltag='ls --tree --all --git-ignore'
   alias l.="eza -a | grep -E '^\.'"
 else
   alias ls='ls --color=tty'
