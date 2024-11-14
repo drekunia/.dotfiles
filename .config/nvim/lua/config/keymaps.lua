@@ -30,8 +30,8 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Moves to the EOL with `E` and BOL with `B`
-vim.keymap.set("n", "E", "$", { noremap = false })
-vim.keymap.set("n", "B", "^", { noremap = false })
+vim.keymap.set("n", "E", "$", opts)
+vim.keymap.set("n", "B", "^", opts)
 
 -- Navigate through quickfix and location lists and center the cursor
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
