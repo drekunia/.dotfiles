@@ -1,22 +1,7 @@
-"""" Enable Vundle: vim plugin manager
+" --- Basic Settings ---
 
-" required before Vundle initialization
-set nocompatible        " disable compatibility mode with vi
-" filetype off            " disable filetype detection (but re-enable later, see below)
-
-" set the runtime path to include Vundle, and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-" Plugin 'VundleVim/Vundle.vim'
-" Plugin 'wting/rust.vim' " enable syntax highlighting for rust
-" call vundle#end()
-
-
-"""" Basic Behavior
-
-set number              " show line numbers
+set nocompatible        " Use Vim defaults (not Vi)
 set wrap                " wrap lines
-set encoding=utf-8      " set encoding to UTF-8 (default was "latin1")
 set mouse=a             " enable mouse support (might not work well on Mac OS X)
 set wildmenu            " visual autocomplete for command menu
 set lazyredraw          " redraw screen only when we need to
@@ -25,46 +10,168 @@ set laststatus=2        " always show statusline (even with only single window)
 set ruler               " show line and column number of the cursor on right side of statusline
 set visualbell          " blink cursor on error, instead of beeping
 
+" Leader key
+let mapleader = " " " Set leader to space
 
-"""" Key Bindings
+" Clipboard
+set clipboard=unnamedplus " Use system clipboard
 
-" move vertically by visual line (don't skip wrapped lines)
-nmap j gj
-nmap k gk
+" Searching
+set hlsearch " Highlight search results (different from your Neovim config)
+set incsearch " Incremental search
+set ignorecase " Case-insensitive search
+set smartcase " Case-sensitive if uppercase in pattern
 
+" Encoding
+set encoding=utf-8
 
-"""" Vim Appearance
+" --- Appearance ---
 
-" put colorscheme files in ~/.vim/colors/
-" colorscheme murphy      " good colorschemes: murphy, slate, molokai, badwolf, solarized
+set number " Show line numbers
+set relativenumber " Show relative line numbers
+set termguicolors " Enable true colors (if supported by your terminal)
+set signcolumn=yes " Always show the sign column
+set scrolloff=8 " Keep 8 lines above/below the cursor
+set sidescrolloff=8 " Keep 8 columns left/right of the cursor
+set colorcolumn=80 " Add a vertical line at column 80
 
-" use filetype-based syntax highlighting, ftplugins, and indentation
-" syntax enable
-" filetype plugin indent on
+" --- Formatting ---
+set autoindent " Auto indent
+set smartindent " Smart indent
+set breakindent " Indent wrapped lines
+set tabstop=2 " 2 spaces for tabs
+set softtabstop=2 " 2 spaces for soft tabs
+set shiftwidth=2 " 2 spaces for indent
+set expandtab " Use spaces instead of tabs
 
+" --- File Handling ---
 
-"""" Tab settings
-
-set tabstop=2           " width that a <TAB> character displays as
-set expandtab           " convert <TAB> key-presses to spaces
-set shiftwidth=2        " number of spaces to use for each step of (auto)indent
-set softtabstop=2       " backspace after pressing <TAB> will remove up to this many spaces
-
-set autoindent          " copy indent from current line when starting a new line
-set smartindent         " even better autoindent (e.g. add indent after '{')
-
-
-"""" Search settings
-
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
-
-" turn off search highlighting with <CR> (carriage-return)
-nnoremap <CR> :nohlsearch<CR><CR>
-
+set nobackup " Disable backups
+set nowritebackup " Disable write backups
+set undofile " Enable persistent undo
+" set undodir=$HOME/.vim/undodir " Set the undo directory
+set noswapfile " Disable swap files
 
 """" Miscellaneous settings that might be worth enabling
 
 set cursorline         " highlight current line
 set background=dark    " configure Vim to use brighter colors
 set autoread           " autoreload the file in Vim if it has been changed outside of Vim
+
+" --- Keymaps ---
+
+" Disable Q
+nnoremap Q <nop>
+
+" move vertically by visual line (don't skip wrapped lines)
+nmap j gj
+nmap k gk
+
+" Clear highlights
+nnoremap <Esc> :noh<CR>
+
+" turn off search highlighting with <CR> (carriage-return)
+nnoremap <CR> :nohlsearch<CR><CR>
+
+" Delete without copying
+nnoremap x "_x
+
+" Scroll and center
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Find and center
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Move to EOL/BOL
+nnoremap E $
+nnoremap B ^
+
+" Quickfix navigation
+nnoremap <C-k> :cprev<CR>zz
+nnoremap <C-j> :cnext<CR>zz
+
+" Location list navigation (using <leader> since we don't have localleader)
+nnoremap <leader>k :lprev<CR>zz
+nnoremap <leader>j :lnext<CR>zz
+
+" Exit insert mode with jk, kj, jj, kk
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap jj <Esc>
+inoremap kk <Esc>
+
+" Map <C-c> to <Esc> in insert mode
+inoremap <C-c> <Esc>
+
+" Stay in indent mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Move text up/down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Paste without affecting registers
+vnoremap p "_dP
+
+" Copy and paste with system clipboard
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
+vnoremap <leader>Y "+Y
+
+" Paste from register 0
+nnoremap <leader>p "0p
+vnoremap <leader>p "0p
+nnoremap <leader>P "0P
+vnoremap <leader>P "0P
+
+" Change text without affecting registers
+nnoremap <leader>c "_c
+vnoremap <leader>c "_c
+nnoremap <leader>C "_C
+vnoremap <leader>C "_C
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+nnoremap <leader>D "_D
+vnoremap <leader>D "_D
+
+" Tab navigation
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprev<CR>
+
+" --- Plugin-like behavior (using autocmds and mappings) ---
+
+" Turn off paste mode when leaving insert
+augroup InsertLeave
+  autocmd!
+  autocmd InsertLeave * set nopaste
+augroup END
+
+" Highlight on yank
+augroup YankHighlight
+  autocmd!
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+augroup END
+
+" You'll need to install plugins for the rest of the functionality
+" ... (Refer to the notes below)
+
+" --- Notes ---
+
+" To get the full functionality of your Neovim config, you'll need to
+" install equivalent plugins in Vim for:
+
+" * LSP support
+"     * Consider using `vim-lsp` or `coc.nvim`
+" * Completion (like `nvim-cmp`)
+" * File explorer (like `NERDTree` or `defx.nvim`)
+" * Fuzzy finding (like `fzf.vim`)
+" * Git integration (like `vim-fugitive`)
+" * Code formatting (like `vim-prettier`)
+" * And any other plugins you use in your Neovim config
+
+" Remember to configure these plugins and set up their keymaps in your
+" `.vimrc` file.
