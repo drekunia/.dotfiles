@@ -2,57 +2,50 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- Leader
+-- Basic Editor Behavior
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- Enable absolute line numbers and relative line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
-
--- Tab settings
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-
--- Disable swapfile and backup files
-vim.opt.swapfile = false
-vim.opt.backup = false
-
--- Enable persistent undo by setting undodir
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-
--- Disable highlighting of search results and enable incremental search
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
--- Enable true color
-vim.opt.termguicolors = true
-
--- Keep 8 line visible above and below cursor
-vim.opt.scrolloff = 8
-
--- Always show the sign column
-vim.opt.signcolumn = "yes"
-
--- Allows `@-@` in filename
+vim.o.mouse = "a"
+vim.o.clipboard = "unnamedplus"
+vim.o.hlsearch = false
+vim.o.incsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.completeopt = "menuone,noselect"
 vim.opt.isfname:append("@-@")
+vim.scriptencoding = "utf-8"
+vim.o.encoding = "utf-8"
+vim.o.fileencoding = "utf-8"
 
--- Set the delay for triggering events
-vim.opt.updatetime = 50
-
--- Highlight column 80 to guide line break
+-- Appearance and Display
+vim.wo.number = true
+vim.o.relativenumber = true
+vim.o.termguicolors = true
+vim.wo.signcolumn = "yes"
+vim.o.linebreak = true
+vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
+vim.o.numberwidth = 4
+vim.o.cursorline = false
+vim.o.showtabline = 2
+vim.o.conceallevel = 0
 -- vim.opt.colorcolumn = "80"
 
--- Encoding UTF-8
-vim.scriptencoding = "utf-8"
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
+-- Formatting
+vim.o.title = true
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.breakindent = true
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
 
--- Title and indentation
-vim.opt.title = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.breakindent = true
+-- File Handling and Backups
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.undofile = true
+vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.o.swapfile = false
