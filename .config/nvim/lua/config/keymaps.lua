@@ -13,7 +13,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Allow moving cursor through wrapped lines with j,k
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set("n", "k", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Clear highlights
 vim.keymap.set("n", "<Esc>", ":noh<CR>", opts)
@@ -73,7 +73,7 @@ vim.keymap.set({ "n", "v" }, "<leader>C", '"_C')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_D')
 
--- Tab management
+-- Window, Tab, and Buffer management
 -- vim.keymap.set("n", "te", ":tabedit<Return>")
 vim.keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
