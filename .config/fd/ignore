@@ -1,27 +1,17 @@
 # WebStorm
 .idea/*
 
-# vi/vim
-*~
-*.swp
-
 # VS Code
 .vscode/*
 
 # Git
 .git/*
-*.orig
 
 # Node
-npm-debug.log
 node_modules/*
 
 # Elixir
 .elixir_ls/*
 
-# Icon must end with two \r
-Icon
-
 # General
 log/*
-*.log
