@@ -183,7 +183,7 @@ else
 fi
 
 # - ripgrep
-export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgrep.conf"
 
 # - fzf
 if [ $(command -v fzf) ]; then
