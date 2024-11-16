@@ -32,12 +32,12 @@ This directory contains the dotfiles for my system
   ```
 
 - Clone this repository to home
-  ```
+  ```bash
   git clone git@github.com:drekunia/.dotfiles.git ~/.dotfiles
   ```
 
 - Stow the configs
-  ```
+  ```bash
   cd ~/.dotfiles && stow .
   ```
 
@@ -49,7 +49,7 @@ This directory contains the dotfiles for my system
 - Restart Terminal
 
 - Clone ZSH plugins
-  ```
+  ```bash
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_PLUGINS:-~/.zsh/plugins}/zsh-autosuggestions; \
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_PLUGINS:-~/.zsh/plugins}/zsh-syntax-highlighting; \
   git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_PLUGINS:-~/.zsh/plugins}/you-should-use; \
@@ -63,13 +63,31 @@ This directory contains the dotfiles for my system
 
 ### Development Environment
 
-#### Neovim and LazyVim
+#### GPG keypair for signing Git commit
+tba
+
+#### [Rust with rustup](https://www.rust-lang.org/tools/install)
+`rustc` is a requirement for `ruby` in `mise` plugins, so it's better to install Rust first
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+#### mise, Neovim, and LazyVim
 I use LazyVim and some plugin have dependencies. I put `lazygit` on `mise` config and other packages are installed with `apt`.
 
 - Install [mise-en-place](https://mise.jdx.dev/installing-mise.html#apt)
 
+- `mise` requires `unzip` for extracting plugins on install
+  ```bash
+  sudo apt install unzip
+  ```
+
 - Restart Terminal and run `mise install`
   (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)
+  To install `ruby` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc`:
+  ```bash
+  sudo apt-get install autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+  ```
 
 - Install `luarocks` and `xsel`
   ```bash
@@ -77,7 +95,7 @@ I use LazyVim and some plugin have dependencies. I put `lazygit` on `mise` confi
   ```
 
 - Install Neovim (v0.10.0 or later)
-  ```
+  ```bash
   sudo apt-get install software-properties-common && \
   sudo add-apt-repository ppa:neovim-ppa/stable && \
   sudo apt-get update && \
@@ -91,6 +109,6 @@ I use LazyVim and some plugin have dependencies. I put `lazygit` on `mise` confi
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 - [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
 - [Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#linux)
+- `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 - `git-lfs`
 - `keychain`
-
