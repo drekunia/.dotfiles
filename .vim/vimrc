@@ -8,7 +8,7 @@ set lazyredraw          " redraw screen only when we need to
 set showmatch           " highlight matching parentheses / brackets [{()}]
 set laststatus=2        " always show statusline (even with only single window)
 set ruler               " show line and column number of the cursor on right side of statusline
-set visualbell          " blink cursor on error, instead of beeping
+" set visualbell          " blink cursor on error, instead of beeping
 
 " Leader key
 let mapleader = " " " Set leader to space
@@ -29,11 +29,11 @@ set encoding=utf-8
 
 set number " Show line numbers
 set relativenumber " Show relative line numbers
-set termguicolors " Enable true colors (if supported by your terminal)
-set signcolumn=yes " Always show the sign column
+" set termguicolors " Enable true colors (if supported by your terminal)
+" set signcolumn=yes " Always show the sign column
 set scrolloff=8 " Keep 8 lines above/below the cursor
 set sidescrolloff=8 " Keep 8 columns left/right of the cursor
-set colorcolumn=80 " Add a vertical line at column 80
+" set colorcolumn=80 " Add a vertical line at column 80
 
 " --- Formatting ---
 set autoindent " Auto indent
@@ -49,13 +49,13 @@ set expandtab " Use spaces instead of tabs
 set nobackup " Disable backups
 set nowritebackup " Disable write backups
 set undofile " Enable persistent undo
-" set undodir=$HOME/.vim/undodir " Set the undo directory
+set undodir=$HOME/.vim/undodir " Set the undo directory
 set noswapfile " Disable swap files
 
 """" Miscellaneous settings that might be worth enabling
 
-set cursorline         " highlight current line
-set background=dark    " configure Vim to use brighter colors
+" set cursorline         " highlight current line
+" set background=dark    " configure Vim to use brighter colors
 set autoread           " autoreload the file in Vim if it has been changed outside of Vim
 
 " --- Keymaps ---
@@ -145,16 +145,16 @@ nnoremap <S-Tab> :tabprev<CR>
 " --- Plugin-like behavior (using autocmds and mappings) ---
 
 " Turn off paste mode when leaving insert
-augroup InsertLeave
-  autocmd!
-  autocmd InsertLeave * set nopaste
-augroup END
+" augroup InsertLeave
+"   autocmd!
+"   autocmd InsertLeave * set nopaste
+" augroup END
 
 " Highlight on yank
-augroup YankHighlight
-  autocmd!
-  autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-augroup END
+" augroup YankHighlight
+"   autocmd!
+"   autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+" augroup END
 
 " You'll need to install plugins for the rest of the functionality
 " ... (Refer to the notes below)
