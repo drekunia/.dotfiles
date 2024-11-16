@@ -96,6 +96,13 @@ fi
 # General aliases
 alias which-command=whence
 
+# WSL environment check
+if grep -iq "wsl" /proc/version; then
+  export IN_WSL=true
+else
+  export IN_WSL=false
+fi
+
 # ---------------------------------------------------------------------------------
 # Development Environment
 # ---------------------------------------------------------------------------------
@@ -164,7 +171,12 @@ fi
 
 # - eza
 if [ $(command -v eza) ]; then
-  alias ls='eza --color=always --group-directories-first --icons'
+  if $IN_WSL; then
+    alias ls='eza --color=always --group-directories-first'
+  else
+    alias ls='eza --color=always --group-directories-first --icons'
+  fi
+
   alias ll='ls -la --octal-permissions'
   alias l='ls -bGF --header --git'
   alias llm='ls -lbGd --header --git --sort=modified' 
@@ -202,7 +214,11 @@ if [ $(command -v fzf) ]; then
   fi
 
   if type eza > /dev/null 2>&1; then
-    export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {}'"
+    if $IN_WSL; then
+      export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first {}'"
+    else
+      export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {}'"
+    fi
   elif type tree > /dev/null 2>&1; then
     export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
   fi
@@ -240,6 +256,12 @@ fi
 
 # - starship
 if [ $(command -v starship) ]; then
+  if $IN_WSL; then
+    export STARSHIP_CONFIG=~/.config/starship/starship_wsl.toml
+  else
+    export STARSHIP_CONFIG=~/.config/starship/starship.toml
+  fi
+
   eval "$(starship init zsh)"
 fi
 
