@@ -1,7 +1,7 @@
 # My dotfiles
 
-This repository contains the dotfiles for my system\\
-I aim to make this setup to be easy to replicate mainly on Ubuntu and Debian based OS, so here I use `apt` for the installation\
+This repository contains the dotfiles for my system.
+I aim to make this setup to be easy to replicate mainly on Ubuntu and Debian based OS, so here I use `apt` for the installation.
 For Mac environment, I think it's still easy to replicate using Homebrew.
 
 ## Installation
