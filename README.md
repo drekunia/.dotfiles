@@ -23,7 +23,7 @@ This directory contains the dotfiles for my system
   ```
 
 - Setup Git credentials (SSH key in my case)
-  Create or import SSH keypair and make sur it's not too open
+  Create or import SSH keypair and make sure it's not too open
   ```bash
   chmod 700 ~/.ssh; \
   chmod 644 ~/.ssh/id_ed25519.pub; \
