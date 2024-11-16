@@ -1,6 +1,8 @@
 # My dotfiles
 
-This directory contains the dotfiles for my system
+This repository contains the dotfiles for my system\\
+I aim to make this setup to be easy to replicate mainly on Ubuntu and Debian based OS, so here I use `apt` for the installation\
+For Mac environment, I think it's still easy to replicate using Homebrew.
 
 ## Installation
 
@@ -8,7 +10,7 @@ This directory contains the dotfiles for my system
 
 - Install [Jetbrains Mono Nerd Font](https://www.jetbrains.com/lp/mono/)
 
-- Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html#using-the-apt-repo) (or Setup Windows Terminal for WSL)
+- Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html#using-the-apt-repo) (or Setup Windows Terminal for WSL)\
   For Windows Terminal, apply this [settings.json](https://gist.github.com/drekunia/8eb6db8024bdc668d7ccece28a820109) in Settings
 
 - Install required packages
@@ -22,7 +24,7 @@ This directory contains the dotfiles for my system
   ln -s $(which fdfind) ~/.local/bin/fd
   ```
 
-- Setup Git credentials (SSH key in my case)
+- Setup Git credentials (SSH key in my case)\
   Create or import SSH keypair and make sure it's not too open
   ```bash
   chmod 700 ~/.ssh; \
@@ -64,16 +66,20 @@ This directory contains the dotfiles for my system
 ### Development Environment
 
 #### GPG keypair for signing Git commit
+
 tba
 
 #### [Rust with rustup](https://www.rust-lang.org/tools/install)
-`rustc` is a requirement for `ruby` in `mise` plugins, so it's better to install Rust first
+
+`rustc` is a requirement for `ruby` in `mise` plugins, so it's better to install Rust version manager first
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 #### mise, Neovim, and LazyVim
-I use LazyVim and some plugin have dependencies. I put `lazygit` on `mise` config and other packages are installed with `apt`.
+
+I use LazyVim and some plugin have dependencies\
+I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - Install [mise-en-place](https://mise.jdx.dev/installing-mise.html#apt)
 
@@ -82,9 +88,9 @@ I use LazyVim and some plugin have dependencies. I put `lazygit` on `mise` confi
   sudo apt install unzip
   ```
 
-- Restart Terminal and run `mise install`
-  (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)
-  To install `ruby` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc`:
+- Restart Terminal and run `mise install`\
+  (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)\
+  To install `ruby` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc`
   ```bash
   sudo apt-get install autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
   ```
@@ -112,3 +118,9 @@ I use LazyVim and some plugin have dependencies. I put `lazygit` on `mise` confi
 - `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 - `git-lfs`
 - `keychain`
+
+## Problems
+
+I made a separate Starship config and add some conditionals in `.zshrc` for WSL not to include glyphs.
+For some reason, most glyphs doesn't work in Windows Terminal. 
+Let me know in the issues if you have solution or any idea on this.
