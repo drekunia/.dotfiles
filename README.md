@@ -104,7 +104,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 #### mise, Neovim, and LazyVim
 
-I use LazyVim and some plugin have dependencies\
+I use LazyVim and some plugins have dependencies\
 I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - Install [mise-en-place](https://mise.jdx.dev/installing-mise.html#apt)
