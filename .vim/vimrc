@@ -49,8 +49,9 @@ set expandtab " Use spaces instead of tabs
 set nobackup " Disable backups
 set nowritebackup " Disable write backups
 set undofile " Enable persistent undo
-set undodir=$HOME/.vim/undodir " Set the undo directory
+set undodir=$HOME/.vim/undodir/vim " Set the undo directory
 set noswapfile " Disable swap files
+" let g:netrw_dirhistmax = 0
 
 """" Miscellaneous settings that might be worth enabling
 

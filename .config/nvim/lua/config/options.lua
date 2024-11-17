@@ -47,5 +47,6 @@ vim.o.expandtab = true
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.undofile = true
--- vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir/nvim"
 vim.o.swapfile = false
+-- vim.g.netrw_dirhistmax = 0

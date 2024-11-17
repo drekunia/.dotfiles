@@ -32,6 +32,7 @@ ehthumbs.db
 # vi/vim
 *~
 *.swp
+.netrwhist
 
 # VS Code
 .vscode/
