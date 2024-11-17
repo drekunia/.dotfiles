@@ -169,12 +169,14 @@ CLI
   curl -fsSL https://ollama.com/install.sh | sh
   ```
 
-- `jekyll`: run `gem install bundler jekyll` after installing `ruby`
+- [Paperkey](https://github.com/dmshaw/paperkey/): print an OpenPGP key on paper for archive and recovery (can be used to encrypt further to a QR code)
 - `git-lfs`: Git extension for versioning large files
-- `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
-- `keychain`: manager for `ssh-agent`
 - `inotify-tools`: Elixir Phoenix dependency for live reloading
+- `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 - `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
+- `keychain`: manager for `ssh-agent`
+- `qrencode`: QR code generator
+- `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 
 GUI
 
@@ -190,7 +192,7 @@ GUI
 - [Cursor](https://www.cursor.com/)
 - [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
 - [DBeaver](https://dbeaver.io/download/)
-- Obsidian (using Flatpak)
+- [Obsidian](https://obsidian.md/download) (using Flatpak)
 - `meld`
 - `spotify-client`
 
