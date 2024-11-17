@@ -169,6 +169,7 @@ CLI
   curl -fsSL https://ollama.com/install.sh | sh
   ```
 
+- `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 - `git-lfs`: Git extension for versioning large files
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 - `keychain`: manager for `ssh-agent`
