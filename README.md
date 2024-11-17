@@ -144,7 +144,7 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   sudo apt-get install neovim
   ```
 
-#### Other tools
+#### Other common dev tools
 
 CLI
 
@@ -157,26 +157,14 @@ CLI
   ```
 
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-- [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 
   ```bash
   sudo apt install gh
   ```
 
-- [Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#linux)
-
-  ```bash
-  curl -fsSL https://ollama.com/install.sh | sh
-  ```
-
-- [Paperkey](https://github.com/dmshaw/paperkey/): print an OpenPGP key on paper for archive and recovery (can be used to encrypt further to a QR code)
 - `git-lfs`: Git extension for versioning large files
 - `inotify-tools`: Elixir Phoenix dependency for live reloading
 - `jekyll`: run `gem install bundler jekyll` after installing `ruby`
-- `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
-- `keychain`: manager for `ssh-agent`
-- `qrencode`: QR code generator
-- `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 
 GUI
 
@@ -190,11 +178,28 @@ GUI
 
 - [VS Code](https://code.visualstudio.com/docs/setup/linux)
 - [Cursor](https://www.cursor.com/)
-- [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
 - [DBeaver](https://dbeaver.io/download/)
+
+## Other useful packages to install
+
+- [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 - [Obsidian](https://obsidian.md/download) (using Flatpak)
-- `meld`
+- [Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#linux)
+
+  ```bash
+  curl -fsSL https://ollama.com/install.sh | sh
+  ```
+
+- [Paperkey](https://github.com/dmshaw/paperkey/): print an OpenPGP key on paper for archive and recovery (can be used to encrypt further to a QR code)
+- [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
+- `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
+- `keychain`: manager for `ssh-agent`
+- `meld`: GUI for diffing files
+- `pass`: CLI self-custody password manager
+- `qrencode`: QR code generator
 - `spotify-client`
+- `vlc`
+- `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 
 ## Problems
 
