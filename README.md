@@ -194,7 +194,7 @@ GUI
 - [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
 - `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
 - `keychain`: manager for `ssh-agent`
-- `meld`: GUI for diffing files
+- `meld`: GUI for diffing files and directories
 - `pass`: CLI self-custody password manager
 - `qrencode`: QR code generator
 - `spotify-client`
