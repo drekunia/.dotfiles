@@ -83,6 +83,7 @@ For Mac environment, I think it's still easy to replicate using Homebrew.
   ```
 
 - Install [Starship](https://starship.rs/#quick-install)
+
   ```bash
   curl -sS https://starship.rs/install.sh | sh
   ```
@@ -129,6 +130,7 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   ```
 
 - Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu) (v0.10.0 or later)
+
   ```bash
   sudo add-apt-repository ppa:neovim-ppa/unstable && \
   sudo apt-get update && \
@@ -138,12 +140,29 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
 #### Other tools
 
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
+
+  ```bash
+  sudo add-apt-repository ppa:wslutilities/wslu
+  sudo apt update
+  sudo apt install wslu
+  ```
+
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
 - [VS Code](https://code.visualstudio.com/docs/setup/linux)
 - [Cursor](https://www.cursor.com/)
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
+
+  ```bash
+  sudo apt install gh
+  ```
+
 - [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
 - [Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#linux)
+
+  ```bash
+  curl -fsSL https://ollama.com/install.sh | sh
+  ```
+
 - `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 - `git-lfs`
 - `keychain`
