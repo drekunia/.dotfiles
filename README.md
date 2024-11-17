@@ -170,9 +170,10 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   curl -fsSL https://ollama.com/install.sh | sh
   ```
 
-- `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 - `git-lfs`
 - `keychain`
+- `inotify-tools`: Elixir Phoenix dependency for live reloading
+- `jq`: JSON formatter CLI
 
 ## Problems
 
