@@ -19,7 +19,7 @@ For Mac environment, I think it's still easy to replicate using Homebrew.
   ```
   (`eza` can be replaced with `tree` for `fzf` preview)
 
-- Symlink `fdfind` to local PATH 
+- Symlink `fdfind` to local PATH
   ```bash
   ln -s $(which fdfind) ~/.local/bin/fd
   ```
@@ -38,10 +38,16 @@ For Mac environment, I think it's still easy to replicate using Homebrew.
   git clone git@github.com:drekunia/.dotfiles.git ~/.dotfiles
   ```
 
+- Create directories to avoid symlink to parent directories
+  ```bash
+  mkdir ~/{.config,.vim,.zsh}
+  ```
+
 - Stow the configs
   ```bash
   cd ~/.dotfiles && stow .
   ```
+  (sometimes needs to resolve conflicts in case of duplicates)
 
 - Change default shell to ZSH
   ```bash
@@ -100,15 +106,16 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   sudo apt install luarocks xsel
   ```
 
-- Install Neovim (v0.10.0 or later)
+- Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu) (v0.10.0 or later)
   ```bash
-  sudo apt-get install software-properties-common && \
-  sudo add-apt-repository ppa:neovim-ppa/stable && \
+  sudo add-apt-repository ppa:neovim-ppa/unstable && \
   sudo apt-get update && \
   sudo apt-get install neovim
   ```
 
 #### Other tools
+
+- [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
 - [VS Code](https://code.visualstudio.com/docs/setup/linux)
 - [Cursor](https://www.cursor.com/)
@@ -122,5 +129,5 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
 ## Problems
 
 I made a separate Starship config and add some conditionals in `.zshrc` for WSL not to include glyphs.
-For some reason, most glyphs doesn't work in Windows Terminal. 
+For some reason, most glyphs doesn't work in Windows Terminal.
 Let me know in the issues if you have solution or any idea on this.
