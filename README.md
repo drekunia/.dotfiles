@@ -2,7 +2,7 @@
 
 This repository contains the dotfiles for my system.
 I aim to make this setup to be easy to replicate mainly on Ubuntu and Debian based OS, so here I use `apt` for the installation.
-For Mac environment, I think it's still easy to replicate using Homebrew.
+For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 ## Installation
 
@@ -94,9 +94,9 @@ For Mac environment, I think it's still easy to replicate using Homebrew.
 
 tba
 
-#### [Rust with rustup](https://www.rust-lang.org/tools/install)
+#### Rust with `rustup`
 
-`rustc` is a requirement for `ruby` in `mise` plugins, so it's better to install Rust version manager first
+`rustc` is a requirement for `ruby` in `mise` plugins, so it's better to install [Rust version manager](https://www.rust-lang.org/tools/install) first
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -104,7 +104,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 #### mise, Neovim, and LazyVim
 
-I use LazyVim and some plugins have dependencies\
+I use [LazyVim](https://www.lazyvim.org/) and some plugins have dependencies\
 I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - Install [mise-en-place](https://mise.jdx.dev/installing-mise.html#apt)
