@@ -99,10 +99,10 @@
   # Blue on black is hard to read in git branch -vv: use cyan instead
   upstream = cyan
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [grep]
   break = true
   heading = true
