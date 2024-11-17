@@ -146,6 +146,8 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 #### Other tools
 
+CLI
+
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
 
   ```bash
@@ -155,25 +157,41 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   ```
 
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-- [VS Code](https://code.visualstudio.com/docs/setup/linux)
-- [Cursor](https://www.cursor.com/)
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 
   ```bash
   sudo apt install gh
   ```
 
-- [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
 - [Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#linux)
 
   ```bash
   curl -fsSL https://ollama.com/install.sh | sh
   ```
 
-- `git-lfs`
-- `keychain`
+- `git-lfs`: Git extension for versioning large files
+- `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
+- `keychain`: manager for `ssh-agent`
 - `inotify-tools`: Elixir Phoenix dependency for live reloading
-- `jq`: JSON formatter CLI
+- `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
+
+GUI
+
+- [Google Chrome](https://www.google.com/linuxrepositories/)
+
+  ```
+  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo tee /etc/apt/trusted.gpg.d/google.asc >/dev/null && \
+  echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google.list && \
+  sudo apt update && sudo apt install google-chrome-stable
+  ```
+
+- [VS Code](https://code.visualstudio.com/docs/setup/linux)
+- [Cursor](https://www.cursor.com/)
+- [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
+- [DBeaver](https://dbeaver.io/download/)
+- Obsidian (using Flatpak)
+- `meld`
+- `spotify-client`
 
 ## Problems
 
