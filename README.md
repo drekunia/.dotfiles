@@ -28,7 +28,7 @@ For Mac environment, I think it's still easy to replicate using Homebrew.
 
   (`eza` can be replaced with `tree` for `fzf` preview)
 
-- Symlink `fdfind` to local PATH
+- Symlink `fdfind` to local PATH (see [more details](https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu))
 
   ```bash
   mkdir ~/.local/bin; \
