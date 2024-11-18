@@ -124,7 +124,7 @@ fi
 if [ $(command -v docker) ]; then
   # default local postgresql environment
   alias run-local-postgres='docker run -d --name local_postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v local_pgdata:/var/lib/postgresql/data postgres:alpine'
-  alias stop-local-postgres='docker stop local_postgres'
+  alias stop-local-postgres='docker rm -f local_postgres'
 fi
 
 # - Version manager
