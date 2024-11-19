@@ -14,5 +14,8 @@ return {
         never_show = { ".git" },
       },
     },
+    window = {
+      position = "right",
+    },
   },
 }
