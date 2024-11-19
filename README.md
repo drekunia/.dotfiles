@@ -92,7 +92,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 #### GPG keypair for signing Git commit
 
-tba
+Or just disable signing in `.config/git/config`
 
 #### Rust with `rustup`
 
