@@ -200,6 +200,7 @@ endif
 
 " Delete without copying
 nnoremap x "_x
+vnoremap x "_x
 
 " Scroll and center
 nnoremap <C-d> <C-d>zz
