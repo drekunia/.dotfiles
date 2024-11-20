@@ -7,18 +7,19 @@ vim.g.maplocalleader = " "
 vim.o.hlsearch = false
 vim.o.incsearch = true
 vim.o.timeoutlen = 300
-vim.opt.isfname:append("@-@")
+vim.o.isfname:append("@-@")
 vim.scriptencoding = "utf-8"
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 
 -- Appearance and Display
+vim.o.wrap = true
 vim.o.scrolloff = 8
 vim.o.numberwidth = 4
 vim.o.cursorline = false
 vim.o.showtabline = 2
 vim.o.conceallevel = 0
--- vim.opt.colorcolumn = "80"
+-- vim.o.colorcolumn = "80"
 -- vim.o.title = true
 
 -- Formatting
