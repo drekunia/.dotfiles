@@ -6,7 +6,7 @@
   signingkey = 8B7DA20869C73E1F
 [core]
   pager = cat
-  editor = code --wait
+  editor = vim
   excludesfile = ~/.config/git/ignore
   # Global shared hooks directory
   # hooksPath = ~/.githooks
@@ -74,9 +74,9 @@
   # Display submodule-related information (commit listings)
   submodule = log
   # Use VSCode as default diff tool when running `git diff-tool`
-  tool = vscode
-[difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+  # tool = vscode
+# [difftool "vscode"]
+  # cmd = code --wait --diff $LOCAL $REMOTE
 [log]
   # Use abbrev SHAs whenever possible/relevant instead of full 40 chars
   abbrevCommit = true
