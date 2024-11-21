@@ -7,7 +7,6 @@ vim.g.maplocalleader = " "
 vim.o.hlsearch = false
 vim.o.incsearch = true
 vim.o.timeoutlen = 300
-vim.o.isfname:append("@-@")
 vim.scriptencoding = "utf-8"
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"

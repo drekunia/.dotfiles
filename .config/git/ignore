@@ -2,54 +2,51 @@
 **/.DS_Store
 **/._.DS_Store
 .DS_Store
-._.DS_Store
 .DS_Store?
 ._*
-.localized
+._.DS_Store
+.AppleDB
+.AppleDesktop
 .AppleDouble
-.LSOverride
 .DocumentRevisions-V100
-.fseventsd
+.LSOverride
 .Spotlight-V100
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.apdisk
 .com.apple.timemachine.donotpresent
-.AppleDB
-.AppleDesktop
+.fseventsd
+.localized
 Network Trash Folder
 Temporary Items
-.apdisk
 
 # Windows
+*:Zone.Identifier
 Thumbs.db
 ehthumbs.db
-*:Zone.Identifier
-
-# WebStorm
-.idea/
 
 # vi/vim
-*~
 *.swp
+*~
 .netrwhist
 
 # VS Code
-.vscode/
+# .vscode/
+
+# WebStorm
+# .idea/
+
 
 # Git
 *.orig
 
+# General
+log/
+*.log
+
 # Node
-npm-debug.log
 node_modules/
 
 # Elixir
 .elixir_ls/
-
-# Icon must end with two \r
-Icon
-
-# General
-log/
-*.log
