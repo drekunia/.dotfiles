@@ -158,6 +158,8 @@ CLI
 
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
 
+- Github CLI
+
   ```bash
   sudo apt install gh
   ```
