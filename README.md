@@ -173,6 +173,7 @@ GUI
   ```
 
 - [VS Code](https://code.visualstudio.com/docs/setup/linux)
+- [Codeium Windsurf](https://codeium.com/windsurf/download_linux)
 - [DBeaver](https://dbeaver.io/download/)
 
 ## Other useful packages to install
