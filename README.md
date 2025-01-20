@@ -116,7 +116,7 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   sudo apt update && sudo apt install -y mise
   ```
 
-- `mise` requires `unzip` for extracting plugins on install
+- `mise` requires `unzip` for extracting plugins on install (if not installed)
 
   ```bash
   sudo apt install unzip
@@ -124,7 +124,7 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - **Restart Terminal** and run `mise install`\
   (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)\
-  To install `ruby` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc`
+  To install `ruby`, `erlang`, and `elixir` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc`
 
   ```bash
   sudo apt-get install autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
@@ -158,12 +158,6 @@ CLI
 
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
 
-- Github CLI
-
-  ```bash
-  sudo apt install gh
-  ```
-
 - `git-lfs`: Git extension for versioning large files
 - `inotify-tools`: Elixir Phoenix dependency for live reloading
 - `jekyll`: run `gem install bundler jekyll` after installing `ruby`
@@ -179,12 +173,16 @@ GUI
   ```
 
 - [VS Code](https://code.visualstudio.com/docs/setup/linux)
-- [Cursor](https://www.cursor.com/)
 - [DBeaver](https://dbeaver.io/download/)
 
 ## Other useful packages to install
 
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
+
+  ```bash
+  sudo apt install gh
+  ```
+
 - [Obsidian](https://obsidian.md/download) (using Flatpak)
 - [Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#linux)
 
@@ -192,16 +190,17 @@ GUI
   curl -fsSL https://ollama.com/install.sh | sh
   ```
 
-- [Paperkey](https://github.com/dmshaw/paperkey/): print an OpenPGP key on paper for archive and recovery (can be used to encrypt further to a QR code)
-- [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
-- `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
-- `keychain`: manager for `ssh-agent`
 - `meld`: GUI for diffing files and directories
-- `pass`: CLI self-custody password manager
-- `qrencode`: QR code generator
 - `spotify-client`
 - `vlc`
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
+- `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
+- [Cursor](https://www.cursor.com/)
+- `keychain`: manager for `ssh-agent`
+- `qrencode`: QR code generator
+- `pass`: CLI self-custody password manager
+- [Paperkey](https://github.com/dmshaw/paperkey/): print an OpenPGP key on paper for archive and recovery (can be used to encrypt further to a QR code)
+- [Warp Terminal](https://docs.warp.dev/getting-started/getting-started-with-warp)
 
 ## Problems
 
