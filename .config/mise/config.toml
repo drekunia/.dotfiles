@@ -1,12 +1,7 @@
 [tools]
-clojure = "latest"
 node = "latest"
 go = "latest"
 ruby = "latest"
 elixir = "latest"
 erlang = "latest"
-java = "latest"
-leiningen = "latest"
-sqlite = "latest"
 lazygit = "latest"
-pnpm = "latest"
