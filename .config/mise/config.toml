@@ -1,5 +1,4 @@
 [tools]
 node = "latest"
 go = "latest"
-ruby = "latest"
 lazygit = "latest"
