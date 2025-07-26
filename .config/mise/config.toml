@@ -2,3 +2,4 @@
 node = "latest"
 go = "latest"
 lazygit = "latest"
+ruby = "latest"
