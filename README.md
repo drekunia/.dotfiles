@@ -12,12 +12,6 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 - Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html#using-the-apt-repo) (or Setup Windows Terminal for WSL)
 
-  ```bash
-  curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg && \
-  echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list && \
-  sudo apt update && sudo apt install wezterm
-  ```
-
   For Windows Terminal, apply this [settings.json](https://gist.github.com/drekunia/8eb6db8024bdc668d7ccece28a820109) in Settings
 
 - Install required packages
@@ -84,23 +78,11 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 - Install [Starship](https://starship.rs/#quick-install)
 
-  ```bash
-  curl -sS https://starship.rs/install.sh | sh
-  ```
-
 ### Development Environment
 
 #### GPG keypair for signing Git commit
 
 Or just disable signing in `.config/git/config`
-
-#### Rust with `rustup`
-
-`rustc` is a requirement for `ruby` in `mise` plugins, so it's better to install [Rust version manager](https://www.rust-lang.org/tools/install) first
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
 
 #### mise, Neovim, and LazyVim
 
