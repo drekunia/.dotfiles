@@ -23,7 +23,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 - Install required packages
 
   ```bash
-  sudo apt install stow git zsh bat fd-find eza zoxide ripgrep tmux
+  sudo apt install stow git zsh bat fd-find eza zoxide ripgrep tmux fzf
   ```
 
   (`eza` can be replaced with `tree` for `fzf` preview)
@@ -31,7 +31,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 - Symlink `fdfind` to local PATH (see [more details](https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu))
 
   ```bash
-  mkdir ~/.local/bin; \
+  mkdir ~/.local/bin -p; \
   ln -s $(which fdfind) ~/.local/bin/fd
   ```
 
