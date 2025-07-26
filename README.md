@@ -89,13 +89,7 @@ Or just disable signing in `.config/git/config`
 I use [LazyVim](https://www.lazyvim.org/) and some plugins have dependencies\
 I put `lazygit` on `mise` config and other packages are installed with `apt`
 
-- Install [mise-en-place](https://mise.jdx.dev/installing-mise.html#apt)
-
-- `mise` requires `unzip` for extracting plugins on install (if not installed)
-
-  ```bash
-  sudo apt install unzip
-  ```
+- Install [mise-en-place](https://mise.jdx.dev/installing-mise.html)
 
 - **Restart Terminal** and run `mise install`\
   (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)\
