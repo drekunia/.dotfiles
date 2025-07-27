@@ -96,12 +96,7 @@ fi
 # General aliases
 alias which-command=whence
 
-# WSL environment check
-if grep -iq "wsl" /proc/version; then
-  export IN_WSL=true
-else
-  export IN_WSL=false
-fi
+# export NO_GLYPH=true
 
 # ---------------------------------------------------------------------------------
 # Development Environment
@@ -179,7 +174,7 @@ fi
 
 # - eza
 if [ $(command -v eza) ]; then
-  if $IN_WSL; then
+  if $NO_GLYPH; then
     alias ls='eza --color=always --group-directories-first'
   else
     alias ls='eza --color=always --group-directories-first --icons'
@@ -222,7 +217,7 @@ if [ $(command -v fzf) ]; then
   fi
 
   if type eza > /dev/null 2>&1; then
-    if $IN_WSL; then
+    if $NO_GLYPH; then
       export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first {}'"
     else
       export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {}'"
@@ -264,8 +259,8 @@ fi
 
 # - starship
 if [ $(command -v starship) ]; then
-  if $IN_WSL; then
-    export STARSHIP_CONFIG=~/.config/starship/starship_wsl.toml
+  if $NO_GLYPH; then
+    export STARSHIP_CONFIG=~/.config/starship/starship_no_glyph.toml
   else
     export STARSHIP_CONFIG=~/.config/starship/starship.toml
   fi

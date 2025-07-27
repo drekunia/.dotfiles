@@ -8,7 +8,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 ### Shell Tools
 
-- Install [Jetbrains Mono Nerd Font](https://www.jetbrains.com/lp/mono/)
+- Install [Jetbrains Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases)
 
 - Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html#using-the-apt-repo) (or Setup Windows Terminal for WSL)
 
@@ -127,9 +127,3 @@ GUI
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 - `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
-
-## Problems
-
-I made a separate Starship config and add some conditionals in `.zshrc` for WSL not to include glyphs.
-For some reason, most glyphs doesn't work in Windows Terminal.
-Let me know in the issues if you have solution or any idea on this.
