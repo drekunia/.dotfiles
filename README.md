@@ -125,5 +125,6 @@ GUI
 ## Other useful packages to install
 
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
+- [Git LFS](https://git-lfs.com/)
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 - `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
