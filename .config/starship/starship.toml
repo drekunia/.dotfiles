@@ -47,7 +47,7 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = "catppuccin_mocha"
+palette = "tokyonight"
 
 [hostname]
 ssh_symbol = " "
