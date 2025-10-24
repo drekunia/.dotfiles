@@ -32,7 +32,7 @@ ehthumbs.db
 .netrwhist
 
 # VS Code
-# .vscode/
+.vscode/
 
 # Visual Studio
 *.obj
@@ -58,7 +58,7 @@ ehthumbs.db
 
 
 # WebStorm
-# .idea/
+.idea/
 
 # Git
 *.orig
