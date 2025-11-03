@@ -156,8 +156,12 @@ PATH=~/.console-ninja/.bin:$PATH
 #   eval `keychain --eval --quiet id_rsa`
 # fi
 
-if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
-  eval `keychain --eval --quiet id_ed25519`
+# if [[ $(command -v keychain) && -e ~/.ssh/id_ed25519 ]]; then
+#   eval `keychain --eval --quiet id_ed25519`
+# fi
+
+if [[ $(command -v keychain) ]]; then
+  eval `keychain --eval --quiet`
 fi
 
 # - bat
