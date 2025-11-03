@@ -95,7 +95,6 @@ fi
 
 # General aliases
 alias which-command=whence
-alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove'
 
 # export NO_GLYPH=true
 
@@ -119,24 +118,10 @@ else
   export EDITOR='vim'
 fi
 
-# - Docker
-if [[ $(command -v docker) ]]; then
-  # default local postgresql environment
-  alias run-local-postgres='docker run -d --name local_postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v local_pgdata:/var/lib/postgresql/data postgres:alpine'
-  alias stop-local-postgres='docker rm -f local_postgres'
-fi
-
 # - Version manager
 # mise
 if [[ $(command -v mise) ]]; then
   eval "$(mise activate zsh)"
-
-  alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove; mise upgrade'
-fi
-
-# rustup
-if [[ $(command -v rustup) ]]; then
-  alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove;  mise upgrade; rustup update'
 fi
 
 # - Other tools
@@ -270,6 +255,147 @@ if [[ $(command -v starship) ]]; then
   fi
 
   eval "$(starship init zsh)"
+fi
+
+# ---------------------------------------------------------------------------------
+# Helper Functions
+# ---------------------------------------------------------------------------------
+
+# - General
+# Function to update and clean the system, including external tools
+auto-update() {
+    # Only run if no arguments are provided (e.g., just 'update')
+    if [[ $# -eq 0 ]]; then
+        
+        echo "--- 1/4: Updating Apt package lists ---"
+        sudo apt update
+        
+        # Check if the last command (apt update) was successful
+        if [[ $? -eq 0 ]]; then
+            echo "--- 2/4: Upgrading Apt packages ---"
+            sudo apt upgrade -y
+            sudo apt full-upgrade -y
+        else
+            echo "--- 'apt update' failed. Skipping Apt upgrades. ---"
+        fi
+        
+        echo "--- 3/4: Cleaning Apt packages ---"
+        sudo apt clean
+        sudo apt autoclean
+        sudo apt autoremove -y
+
+        echo "--- 4/4: Updating external tools ---"
+        
+        # Check for mise and update it
+        if command -v mise &>/dev/null; then
+            echo "Updating mise..."
+            mise upgrade
+        fi
+        
+        # Check for rustup and update it
+        if command -v rustup &>/dev/null; then
+            echo "Updating rustup..."
+            rustup update
+        fi
+        
+        echo "--- System update and cleanup complete! ---"
+
+    else
+        # If arguments were given (e.g., 'update --foo'),
+        # try to run the 'original' command.
+        # This will fail with 'command not found', as you wanted.
+        command auto-update "$@"
+    fi
+}
+
+# - ZSH
+# Function to update all manually cloned Zsh plugins
+update-zsh-plugins() {
+    # Only run if no arguments are provided
+    if [[ $# -eq 0 ]]; then
+        
+        # Define the base directory (same as in your clone commands)
+        local plugins_dir=${ZSH_PLUGINS:-~/.zsh/plugins}
+
+        echo "--- Updating Zsh plugins from $plugins_dir ---"
+
+        # Check if the plugins directory itself exists
+        if [[ ! -d "$plugins_dir" ]]; then
+            echo "Error: Plugin directory not found at $plugins_dir"
+            return 1 # Exit the function with an error
+        fi
+
+        # Loop through every item inside the plugins directory
+        # The (N) flag makes the loop do nothing if no matches are found
+        # The / flag matches only directories
+        for plugin_path in $plugins_dir/*(N/); do
+            
+            # Check if the directory is a git repository
+            if [[ -d "$plugin_path/.git" ]]; then
+                
+                # Get just the folder name for logging
+                local plugin_name=$(basename "$plugin_path")
+                
+                echo "Updating $plugin_name..."
+                
+                # Run the pull in a subshell to avoid changing your
+                # current directory.
+                ( cd "$plugin_path" && git pull )
+                
+            fi
+        done
+        
+        echo "--- Zsh plugin update complete! ---"
+
+    else
+        # If arguments were given, fail with 'command not found'
+        command update-zsh-plugins "$@"
+    fi
+}
+
+# - Docker
+# Check if docker is installed before defining docker functions
+if command -v docker &>/dev/null; then
+
+    # Function to run a default local postgresql container
+    local-postgres-up() {
+        # Only run if no arguments are provided
+        if [[ $# -eq 0 ]]; then
+            echo "--- Starting local postgres container... ---"
+            docker run -d --name local_postgres \
+                -e POSTGRES_PASSWORD=postgres \
+                -p 5432:5432 \
+                -v local_pgdata:/var/lib/postgresql/data \
+                postgres:alpine
+            
+            if [[ $? -eq 0 ]]; then
+                echo "--- Container 'local_postgres' started. ---"
+            else
+                echo "--- Failed to start container. It might already be running or an error occurred. ---"
+            fi
+        else
+            # Fail if any arguments are given
+            command local-postgres-up "$@"
+        fi
+    }
+
+    # Function to stop and remove the local postgresql container
+    local-postgres-down() {
+        # Only run if no arguments are provided
+        if [[ $# -eq 0 ]]; then
+            echo "--- Stopping and removing 'local_postgres' container... ---"
+            docker rm -f local_postgres
+            if [[ $? -eq 0 ]]; then
+                echo "--- Container 'local_postgres' removed. ---"
+            else
+                echo "--- Failed to remove container. It might not exist. ---"
+            fi
+        else
+            # Fail if any arguments are given
+            command local-postgres-down "$@"
+        fi
+    }
+
 fi
 
 # ---------------------------------------------------------------------------------
