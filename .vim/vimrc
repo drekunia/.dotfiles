@@ -35,8 +35,8 @@ set relativenumber       " Show relative line numbers
 " set signcolumn=yes       " Always show the sign column
 set scrolloff=8          " Keep 8 lines above/below the cursor
 set sidescrolloff=8      " Keep 8 columns left/right of the cursor
-set showtabline=2        " Always shows the tab line
-" set colorcolumn=80       " Add a vertical line at column 80
+set showtabline=4        " Always shows the tab line
+" set colorcolumn=120      " Add a vertical line at column 120
 set conceallevel=0       " Shows all concealed text (no concealment)
 set foldlevel=99         " Sets the initial fold level (how many levels of folds are open)
 set splitbelow           " Opens new windows below the current window
@@ -54,9 +54,9 @@ set autoindent " Auto indent
 set smartindent " Smart indent
 set breakindent " Indent wrapped lines
 set linebreak " Breaks lines at word boundaries
-set tabstop=2 " 2 spaces for tabs
-set softtabstop=2 " 2 spaces for soft tabs
-set shiftwidth=2 " 2 spaces for indent
+set tabstop=4 " 4 spaces for tabs
+set softtabstop=4 " 4 spaces for soft tabs
+set shiftwidth=4 " 4 spaces for indent
 set shiftround " Rounds indentation to a multiple of 'shiftwidth'
 set expandtab " Use spaces instead of tabs
 set nowrap " Disables line wrapping

@@ -16,15 +16,15 @@ vim.o.wrap = true
 vim.o.scrolloff = 8
 vim.o.numberwidth = 4
 vim.o.cursorline = false
-vim.o.showtabline = 2
+vim.o.showtabline = 4
 vim.o.conceallevel = 0
--- vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "120"
 -- vim.o.title = true
 
 -- Formatting
 vim.o.autoindent = true
 vim.o.breakindent = true
-vim.o.softtabstop = 2
+vim.o.softtabstop = 4
 
 -- File Handling and Backups
 vim.o.backup = false

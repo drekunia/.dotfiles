@@ -1,7 +1,8 @@
 [tools]
-node = "latest"
+node = "lts"
 go = "latest"
 lazygit = "latest"
 ruby = "latest"
 fzf = "latest"
 tree-sitter = "latest"
+java = "temurin-25"
