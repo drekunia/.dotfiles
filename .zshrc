@@ -95,7 +95,7 @@ fi
 
 # General aliases
 alias which-command=whence
-alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove;  mise upgrade; rustup update'
+alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove'
 
 # export NO_GLYPH=true
 
@@ -111,7 +111,7 @@ alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt
 #   export EDITOR='nvim'
 # fi
 
-if [ $(command -v nvim) ]; then
+if [[ $(command -v nvim) ]]; then
   export EDITOR='nvim'
   alias vi=nvim
   alias vim=nvim
@@ -120,7 +120,7 @@ else
 fi
 
 # - Docker
-if [ $(command -v docker) ]; then
+if [[ $(command -v docker) ]]; then
   # default local postgresql environment
   alias run-local-postgres='docker run -d --name local_postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v local_pgdata:/var/lib/postgresql/data postgres:alpine'
   alias stop-local-postgres='docker rm -f local_postgres'
@@ -128,8 +128,15 @@ fi
 
 # - Version manager
 # mise
-if [ $(command -v mise) ]; then
+if [[ $(command -v mise) ]]; then
   eval "$(mise activate zsh)"
+
+  alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove; mise upgrade'
+fi
+
+# rustup
+if [[ $(command -v rustup) ]]; then
+  alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove;  mise upgrade; rustup update'
 fi
 
 # - Other tools
@@ -174,7 +181,7 @@ elif command -v bat >/dev/null 2>&1; then
 fi
 
 # - eza
-if [ $(command -v eza) ]; then
+if [[ $(command -v eza) ]]; then
   if $NO_GLYPH; then
     alias ls='eza --color=always --group-directories-first'
   else
@@ -202,7 +209,7 @@ fi
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgrep.conf"
 
 # - fzf
-if [ $(command -v fzf) ]; then
+if [[ $(command -v fzf) ]]; then
   export FZF_DEFAULT_OPTS='--no-height --color=bg+:#1a1b26,gutter:#32344a,pointer:#f7768e,info:#9ece6a,hl:#7aa2f7,hl+:#7dcfff'
 
   if type fd > /dev/null 2>&1; then
@@ -243,7 +250,7 @@ if [ $(command -v fzf) ]; then
 fi
 
 # - tmux
-if [ $(command -v tmux) ]; then
+if [[ $(command -v tmux) ]]; then
   # Use 256 color for tmux
   alias tmux="TERM=screen-256color-bce tmux"
 
@@ -253,13 +260,13 @@ if [ $(command -v tmux) ]; then
 fi
 
 # - zoxide
-if [ $(command -v zoxide) ]; then
+if [[ $(command -v zoxide) ]]; then
   export _ZO_RESOLVE_SYMLINKS=1
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
 # - starship
-if [ $(command -v starship) ]; then
+if [[ $(command -v starship) ]]; then
   if $NO_GLYPH; then
     export STARSHIP_CONFIG=~/.config/starship/starship_no_glyph.toml
   else
