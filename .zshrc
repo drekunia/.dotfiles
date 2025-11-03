@@ -95,6 +95,7 @@ fi
 
 # General aliases
 alias which-command=whence
+alias update='sudo apt update; sudo apt upgrade; sudo apt full-upgrade; sudo apt clean; sudo apt autoclean; sudo apt autoremove;  mise upgrade; rustup update'
 
 # export NO_GLYPH=true
 
