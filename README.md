@@ -101,6 +101,12 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   sudo apt install luarocks xsel
   ```
 
+- Install `python3-venv` (Ruff dependencies)
+
+  ```bash
+  sudo apt install python3-venv
+  ```
+
 - Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu) (v0.10.0 or later)
 
 #### Other common dev tools

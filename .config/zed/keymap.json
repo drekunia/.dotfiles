@@ -1,0 +1,93 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "alt-q": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space f n": "project_panel::NewFile",
+      "ctrl-shift-n": "project_panel::NewDirectory"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // Key-bindings for empty pane
+      "space f n": "workspace::NewFile",
+      "space f p": "projects::OpenRecent",
+
+      "space w l": "workspace::ToggleRightDock",
+      "space w right": "workspace::ToggleRightDock",
+      "space w h": "workspace::ToggleLeftDock",
+      "space w left": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal || vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      // Move lines
+      "B": ["workspace::SendKeystrokes", "^"], // go to line start
+      "E": ["workspace::SendKeystrokes", "$"], // go to line end
+      "J": "editor::MoveLineDown",
+      "K": "editor::MoveLineUp",
+
+      // Black-hole register bindings (don't clobber paste buffer)
+      "c": ["workspace::SendKeystrokes", "\" _ c"],
+      "C": ["workspace::SendKeystrokes", "\" _ C"],
+      // "d": ["workspace::SendKeystrokes", "\" _ d"],
+      // "D": ["workspace::SendKeystrokes", "\" _ D
+      "s": ["workspace::SendKeystrokes", "\" _ s"],
+      "S": ["workspace::SendKeystrokes", "\" _ S"],
+      "x": ["workspace::SendKeystrokes", "\" _ x"],
+      "X": ["workspace::SendKeystrokes", "\" _ X"],
+
+      // Toggle comments
+      "g c": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !VimWaiting && !menu",
+    "bindings": {
+      // Escape sequences
+      "j k": "vim::NormalBefore",
+      "k j": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      // Use editor indent/outdent instead of Vim's
+      "<": "editor::Outdent",
+      ">": "editor::Indent"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // Open markdown preview
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide",
+
+      "space p e": "diagnostics::Deploy",
+
+      "space f n": "workspace::NewFile",
+      "space f p": "projects::OpenRecent",
+
+      "space w l": "workspace::ToggleRightDock",
+      "space w right": "workspace::ToggleRightDock",
+      "space w h": "workspace::ToggleLeftDock",
+      "space w left": "workspace::ToggleLeftDock"
+    }
+  }
+]
