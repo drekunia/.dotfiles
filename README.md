@@ -48,7 +48,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 - Create directories to avoid symlink to parent directories
 
   ```bash
-  mkdir ~/{.config,.vim,.zsh,.ssh,.gnupg}
+  mkdir ~/{.config/zed,.vim,.zsh,.ssh,.gnupg} -p
   ```
 
 - Stow the configs
