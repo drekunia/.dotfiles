@@ -134,3 +134,4 @@ GUI
 - [Git LFS](https://git-lfs.com/)
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 - `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
+- [Ollama](https://ollama.com/download/linux)
