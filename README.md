@@ -115,7 +115,6 @@ CLI
 
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-- `git-lfs`: Git extension for versioning large files
 - `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 
 GUI
@@ -131,7 +130,7 @@ GUI
 ## Other useful packages to install
 
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
-- [Git LFS](https://git-lfs.com/)
+- [Git LFS](https://git-lfs.com/): Git extension for versioning large files
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 - `jq`: JSON formatter CLI (read [tutroial](https://jqlang.github.io/jq/tutorial/))
 - [Ollama](https://ollama.com/download/linux)
