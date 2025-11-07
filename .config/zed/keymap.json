@@ -38,7 +38,7 @@
   {
     "context": "Editor && vim_mode == normal || vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
-      // Move lines
+      // Move cursor and lines
       "B": ["workspace::SendKeystrokes", "^"], // go to line start
       "E": ["workspace::SendKeystrokes", "$"], // go to line end
       "J": "editor::MoveLineDown",
