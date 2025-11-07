@@ -1,8 +1,13 @@
 [tools]
-node = "lts"
-go = "latest"
-lazygit = "latest"
-ruby = "latest"
 fzf = "latest"
-tree-sitter = "latest"
+go = "latest"
 java = "temurin-25"
+lazygit = "latest"
+node = "lts"
+ruby = "latest"
+tree-sitter = "latest"
+"gem:jekyll" = "latest"
+"go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
+
+[env]
+GOPATH = "{{env.HOME}}/.cache/go"
