@@ -93,7 +93,7 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - **Restart Terminal** and run `mise install`\
   (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)\
-  To install `ruby`, `erlang`, and `elixir` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc`
+  To install `ruby`, `erlang`, and `elixir` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc` ([rustup](https://rustup.rs/))
 
 - Install `luarocks` and `xsel` (LazyVim dependencies)
 
