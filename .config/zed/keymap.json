@@ -16,6 +16,7 @@
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
+      // New file and folder on project panel
       "space f n": "project_panel::NewFile",
       "ctrl-shift-n": "project_panel::NewDirectory"
     }
@@ -23,10 +24,11 @@
   {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
-      // Key-bindings for empty pane
+      // New file or open recent project from empty pane
       "space f n": "workspace::NewFile",
       "space f p": "projects::OpenRecent",
 
+      // Toggle left or right dock
       "space w l": "workspace::ToggleRightDock",
       "space w right": "workspace::ToggleRightDock",
       "space w h": "workspace::ToggleLeftDock",
@@ -65,25 +67,20 @@
     }
   },
   {
-    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
-    "bindings": {
-      // Use editor indent/outdent instead of Vim's
-      "<": "editor::Outdent",
-      ">": "editor::Indent"
-    }
-  },
-  {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       // Open markdown preview
       "space m p": "markdown::OpenPreview",
       "space m P": "markdown::OpenPreviewToTheSide",
 
+      // Show diagnostics for debugging
       "space p e": "diagnostics::Deploy",
 
+      // New file or open recent project from editor
       "space f n": "workspace::NewFile",
       "space f p": "projects::OpenRecent",
 
+      // Toggle left or right dock
       "space w l": "workspace::ToggleRightDock",
       "space w right": "workspace::ToggleRightDock",
       "space w h": "workspace::ToggleLeftDock",
