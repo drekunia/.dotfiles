@@ -7,9 +7,21 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "disable_ai": false,
   // trigger manually with ctrl-x ctrl-c
   "show_edit_predictions": true,
+  "disable_ai": false,
+
+  "wsl_connections": [
+    {
+      "distro_name": "Ubuntu",
+      "user": null,
+      "projects": [
+        {
+          "paths": ["/home/drekunia/Projects/blog"]
+        }
+      ]
+    }
+  ],
 
   "agent": {
     "default_model": {
@@ -31,18 +43,6 @@
     "dock": "left",
     "model_parameters": []
   },
-
-  "wsl_connections": [
-    {
-      "distro_name": "Ubuntu",
-      "user": null,
-      "projects": [
-        {
-          "paths": ["/home/drekunia/Projects/blog"]
-        }
-      ]
-    }
-  ],
 
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_fallbacks": ["Consolas"],
