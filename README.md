@@ -115,7 +115,6 @@ CLI
 
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-- `jekyll`: run `gem install bundler jekyll` after installing `ruby`
 
 GUI
 
