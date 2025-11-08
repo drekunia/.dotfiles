@@ -177,7 +177,7 @@ if [[ $(command -v eza) ]]; then
 
   alias ll='ls -la --octal-permissions'
   alias l='ls -bGF --header --git'
-  alias llm='ls -lbGd --header --git --sort=modified' 
+  alias llm='ls -lbGd --header --git --sort=modified'
   alias la='ls --long --all --group'
   alias lx='ls -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
   alias lS='ls -1'
@@ -272,10 +272,10 @@ fi
 auto-update() {
     # Only run if no arguments are provided (e.g., just 'update')
     if [[ $# -eq 0 ]]; then
-        
+
         echo "--- 1/4: Updating Apt package lists ---"
         sudo apt update
-        
+
         # Check if the last command (apt update) was successful
         if [[ $? -eq 0 ]]; then
             echo "--- 2/4: Upgrading Apt packages ---"
@@ -284,20 +284,20 @@ auto-update() {
         else
             echo "--- 'apt update' failed. Skipping Apt upgrades. ---"
         fi
-        
+
         echo "--- 3/4: Cleaning Apt packages ---"
         sudo apt clean
         sudo apt autoclean
         sudo apt autoremove -y
 
         echo "--- 4/4: Updating external tools ---"
-        
+
         # Check for mise and update it
         if command -v mise &>/dev/null; then
             echo "Updating mise..."
             mise upgrade
         fi
-        
+
         # Check for rustup and update it
         if command -v rustup &>/dev/null; then
             echo "Updating rustup..."
@@ -308,7 +308,7 @@ auto-update() {
               cargo install-update -a
             fi
         fi
-        
+
         echo "--- System update and cleanup complete! ---"
 
     else
@@ -324,7 +324,7 @@ auto-update() {
 update-zsh-plugins() {
     # Only run if no arguments are provided
     if [[ $# -eq 0 ]]; then
-        
+
         # Define the base directory (same as in your clone commands)
         local plugins_dir=${ZSH_PLUGINS:-~/.zsh/plugins}
 
@@ -340,22 +340,22 @@ update-zsh-plugins() {
         # The (N) flag makes the loop do nothing if no matches are found
         # The / flag matches only directories
         for plugin_path in $plugins_dir/*(N/); do
-            
+
             # Check if the directory is a git repository
             if [[ -d "$plugin_path/.git" ]]; then
-                
+
                 # Get just the folder name for logging
                 local plugin_name=$(basename "$plugin_path")
-                
+
                 echo "Updating $plugin_name..."
-                
+
                 # Run the pull in a subshell to avoid changing your
                 # current directory.
                 ( cd "$plugin_path" && git pull )
-                
+
             fi
         done
-        
+
         echo "--- Zsh plugin update complete! ---"
 
     else
@@ -378,7 +378,7 @@ if command -v docker &>/dev/null; then
                 -p 5432:5432 \
                 -v local_pgdata:/var/lib/postgresql/data \
                 postgres:alpine
-            
+
             if [[ $? -eq 0 ]]; then
                 echo "--- Container 'local_postgres' started. ---"
             else
