@@ -59,7 +59,6 @@ set softtabstop=4 " 4 spaces for soft tabs
 set shiftwidth=4 " 4 spaces for indent
 set shiftround " Rounds indentation to a multiple of 'shiftwidth'
 set expandtab " Use spaces instead of tabs
-set nowrap " Disables line wrapping
 let g:markdown_recommended_style = 0 " Disables markdown recommended style
 
 " --- File Handling ---
@@ -225,6 +224,10 @@ nnoremap c "_c
 vnoremap c "_c
 nnoremap C "_C
 vnoremap C "_C
+nnoremap s "_s
+vnoremap s "_s
+nnoremap S "_S
+vnoremap S "_S
 
 " Tab navigation
 nnoremap <Tab> :tabnext<CR>
