@@ -109,7 +109,7 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu) (v0.10.0 or later)
 
-Check `.other-installs` for tools that are not automatically installed
+Check `.other-installs/` for tools that are not automatically installed
 
 #### Other common dev tools
 
