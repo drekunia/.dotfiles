@@ -93,10 +93,16 @@ fi
 # export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch $(uname -m)"
 
+# export NO_GLYPH=true
+
 # General aliases
 alias which-command=whence
 
-# export NO_GLYPH=true
+export WINDOWS_PROJECTS="/mnt/d/Files/Projects"
+alias godotdir=$WINDOWS_PROJECTS/Godot/
+alias unitydir=$WINDOWS_PROJECTS/Unity/
+alias unrealdir="$WINDOWS_PROJECTS/Unreal\ Projects/"
+alias wincodedir=$WINDOWS_PROJECTS/Code
 
 # ---------------------------------------------------------------------------------
 # Development Environment
@@ -296,6 +302,11 @@ auto-update() {
         if command -v rustup &>/dev/null; then
             echo "Updating rustup..."
             rustup update
+
+            if command -v cargo-install-update &>/dev/null; then
+              echo "Updating cargo packages"
+              cargo install-update -a
+            fi
         fi
         
         echo "--- System update and cleanup complete! ---"
