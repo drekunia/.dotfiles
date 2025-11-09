@@ -1,13 +1,16 @@
 [tools]
+"cargo:gen-license" = "latest"
+"cargo:gitnr" = "latest"
+"gem:jekyll" = "latest"
+"go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
 fzf = "latest"
 go = "latest"
 java = "temurin-25"
 lazygit = "latest"
 node = "lts"
 ruby = "latest"
+rust = "stable"
 tree-sitter = "latest"
-"gem:jekyll" = "latest"
-"go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
