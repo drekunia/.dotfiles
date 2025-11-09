@@ -1,6 +1,7 @@
 [tools]
 "cargo:gen-license" = "latest"
 "cargo:gitnr" = "latest"
+"cargo:tealdeer" = "latest"
 "gem:jekyll" = "latest"
 "go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
 fzf = "latest"
