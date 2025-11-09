@@ -11,6 +11,7 @@ node = "lts"
 ruby = "latest"
 rust = "stable"
 tree-sitter = "latest"
+yazi = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
