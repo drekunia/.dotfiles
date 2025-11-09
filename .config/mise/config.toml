@@ -10,4 +10,4 @@ tree-sitter = "latest"
 "go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
 
 [env]
-GOPATH = "{{env.HOME}}/.cache/go"
+GOPATH = "{{env.HOME}}/.go"

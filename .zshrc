@@ -255,7 +255,7 @@ fi
 # - harlequin
 if [[ $(command -v harlequin) ]]; then
   alias harlequin="harlequin --theme tokyo-night"
-  alias harlequin-local="harlequin -a postgres -h localhost -p 5432 -U postgres --password postgres"
+  alias local-harlequin="harlequin -a postgres -h localhost -p 5432 -U postgres --password postgres"
 fi
 
 # - starship
