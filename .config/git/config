@@ -7,13 +7,23 @@
 [gpg]
   format = ssh
 [core]
-  pager = cat
+  # pager = cat
+  pager = delta
   editor = vim
   excludesfile = ~/.config/git/ignore
   # Global shared hooks directory
   # hooksPath = ~/.githooks
   # Don't consider trailing space change as a cause for merge conflicts
   whitespace = -trailing-space
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  side-by-side = true
+  line-numbers = true
+  navigate = true
+  dark = true
+  commit-style = box
+  file-style = box
 [init]
   defaultBranch = main
 [status]
@@ -41,6 +51,7 @@
   # Auto-fetch submodule changes (sadly, won't auto-update)
   recurseSubmodules = on-demand
 [merge]
+  conflictStyle = zdiff3
   ff = false
 [mergetool]
   # Clean up backup files created by merge tools on tool exit

@@ -17,7 +17,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 - Install required packages
 
   ```bash
-  sudo apt install stow git zsh bat fd-find eza zoxide ripgrep tmux fzf keychain
+  sudo apt install stow zsh git git-delta bat fd-find eza zoxide ripgrep fzf tmux keychain
   ```
 
   (`eza` can be replaced with `tree` for `fzf` preview)

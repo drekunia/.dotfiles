@@ -92,6 +92,7 @@ fi
 # export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch $(uname -m)"
+export LESS="-FR"
 
 # export NO_GLYPH=true
 
