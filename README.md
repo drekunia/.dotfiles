@@ -134,10 +134,12 @@ GUI
   sudo apt update && sudo apt install google-chrome-stable
   ```
 
-## Other useful packages to install
+## Other useful packages to install (or not)
 
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 - [Git LFS](https://git-lfs.com/): Git extension for versioning large files
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
 - `jq`: JSON formatter CLI (read [tutorial](https://jqlang.github.io/jq/tutorial/))
 - [Ollama](https://ollama.com/download/linux)
+- [cheat.sh](https://cheat.sh): cheatsheet like manpage (use curl, no need to install)
+- [qrenco.de](https://qrenco.de): same like [cheat.sh](https://cheat.sh) but for QR encoding string
