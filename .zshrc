@@ -310,7 +310,7 @@ auto-update() {
             rustup update
 
             if command -v cargo-install-update &>/dev/null; then
-              echo "Updating cargo packages"
+              echo "Updating cargo packages..."
               cargo install-update -a
             fi
         fi
