@@ -90,7 +90,7 @@ fi
 
 # - ZSH additional configs
 # export MANPATH="/usr/local/man:$MANPATH"
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch $(uname -m)"
 
 # export NO_GLYPH=true
@@ -252,6 +252,12 @@ if [[ $(command -v zoxide) ]]; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
+# - harlequin
+if [[ $(command -v harlequin) ]]; then
+  alias harlequin="harlequin --theme tokyo-night"
+  alias harlequin-local="harlequin -a postgres -h localhost -p 5432 -U postgres --password postgres"
+fi
+
 # - starship
 if [[ $(command -v starship) ]]; then
   if $NO_GLYPH; then
@@ -307,6 +313,13 @@ auto-update() {
               echo "Updating cargo packages"
               cargo install-update -a
             fi
+        fi
+
+        # Check for uv and update it
+        if command -v uv &>/dev/null; then
+            echo "Updating uv..."
+            uv self update
+            uv tool upgrade --all
         fi
 
         echo "--- System update and cleanup complete! ---"

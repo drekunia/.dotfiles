@@ -67,6 +67,12 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 - **Restart Terminal**
 
+- Generate locale (if not available)
+
+  ```bash
+  sudo locale-gen en_US.UTF-8
+  ```
+
 - Clone ZSH plugins
 
   ```bash
