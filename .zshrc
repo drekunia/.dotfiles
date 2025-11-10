@@ -323,6 +323,9 @@ auto-update() {
             uv tool upgrade --all
         fi
 
+        echo "Updating ZSH plugins..."
+        update-zsh-plugins
+
         echo "--- System update and cleanup complete! ---"
 
     else
