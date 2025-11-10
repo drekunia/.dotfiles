@@ -1,3 +1,0 @@
-posting
-harlequin
-harlequin[postgres,mysql]

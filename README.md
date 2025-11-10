@@ -115,14 +115,19 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu) (v0.10.0 or later)
 
-Check `.other-installs/` for tools that are not automatically installed
-
 #### Other common dev tools
 
 CLI
 
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
+- [uv](https://docs.astral.sh/uv/): All-in-one and extremely fast Python package manager written in rustc
+- [Posting](https://posting.sh/): Terminal API client
+- [Harlequin](https://harlequin.sh/): Terminal database client (install `harlequin[postgres,mysql]` for adapters)
+- [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
+- [Git LFS](https://git-lfs.com/): Git extension for versioning large files
+- [Ollama](https://ollama.com/download/linux)
+- `jq`: JSON formatter CLI (read [tutorial](https://jqlang.github.io/jq/tutorial/))
 
 GUI
 
@@ -136,10 +141,6 @@ GUI
 
 ## Other useful packages to install (or not)
 
-- [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
-- [Git LFS](https://git-lfs.com/): Git extension for versioning large files
 - `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
-- `jq`: JSON formatter CLI (read [tutorial](https://jqlang.github.io/jq/tutorial/))
-- [Ollama](https://ollama.com/download/linux)
 - [cheat.sh](https://cheat.sh): cheatsheet like manpage (use curl, no need to install)
 - [qrenco.de](https://qrenco.de): same like [cheat.sh](https://cheat.sh) but for QR encoding string

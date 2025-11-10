@@ -4,6 +4,7 @@
 "cargo:tealdeer" = "latest"
 "gem:jekyll" = "latest"
 "go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
+fastfetch = "latest"
 fzf = "latest"
 go = "latest"
 java = "temurin-25"
