@@ -158,63 +158,63 @@
         {
             "type": "title",
             "key": "{#90}{$1}│ {#92}User        {#90}│",
-            "format": "{$2}{$3}{#36}{user-name}@{host-name} {#2}[{home-dir}]",
+            "format": "{$2}{$3} {#36}{user-name}@{host-name}",
         },
         {
             "type": "datetime",
             "key": "{#90}{$1}│ {#92}Datetime    {#90}│",
-            "format": "{$2}{$3}{year}-{month-pretty}-{day-in-month} {hour-pretty}:{minute-pretty}:{second-pretty} {#2}{weekday} {#2}[W{week}] {#2}[UTC{offset-from-utc}]",
+            "format": "{$2}{$3} {year}-{month-pretty}-{day-in-month} {hour-pretty}:{minute-pretty}:{second-pretty} {#2}{weekday} {#2}W{week} {#2}UTC{offset-from-utc}",
+        },
+        {
+            "type": "users",
+            "key": "{#90}{$1}│ {#92}Login time  {#90}│",
+            "format": "{$2}{$3} {login-time}",
+        },
+        {
+            "type": "uptime",
+            "key": "{#90}{$1}│ {#92}Uptime      {#90}│",
+            "format": "{$2}{$3} {days} days {hours} hours {minutes} mins {seconds} secs",
+            // "format": "{$2}{$3} {formatted}",
         },
         {
             "type": "host",
             "key": "{#90}{$1}│ {#93}Machine     {#90}│",
-            "format": "{$2}{$3}{name} {#2}{version}",
+            "format": "{$2}{$3} {name} {version}",
         },
         {
             "type": "os",
             "key": "{#90}{$1}│ {#93}OS          {#90}│",
-            "format": "{$2}{$3}{pretty-name} {codename} {#2}[{arch}]",
+            "format": "{$2}{$3} {pretty-name} {#2}{codename} {#2}{arch}",
         },
         {
             "type": "kernel",
             "key": "{#90}{$1}│ {#93}Kernel      {#90}│",
-            "format": "{$2}{$3}{sysname} {#2}[v{release}]",
-        },
-        {
-            "type": "users",
-            "key": "{#90}{$1}│ {#93}Login time  {#90}│",
-            "format": "{$2}{$3}{login-time}",
-        },
-        {
-            "type": "uptime",
-            "key": "{#90}{$1}│ {#93}Uptime      {#90}│",
-            "format": "{$2}{$3}{days} days {hours} hours {minutes} mins {seconds} secs",
+            "format": "{$2}{$3} {sysname} {release}",
         },
         {
             "type": "cpu",
             "key": "{#90}{$1}│ {#91}CPU         {#90}│",
-            "format": "{$2}{$3}{name} {#2}[{freq-base}]",
+            "format": "{$2}{$3} {name} {freq-base}",
         },
         {
             "type": "gpu",
             "key": "{#90}{$1}│ {#91}GPU {index}       {#90}│",
-            "format": "{$2}{$3}{name} {#2}[{type}]",
+            "format": "{$2}{$3} {name} {#2}({type})",
         },
         {
             "type": "memory",
             "key": "{#90}{$1}│ {#91}Memory      {#90}│",
-            "format": "{$2}{$3}{used} / {total} ({percentage}{$2})",
+            "format": "{$2}{$3} {used} / {total} ({percentage}{$2})",
         },
         {
             "type": "disk",
             "key": "{#90}{$1}│ {#91}Disk {index}      {#90}│",
-            "format": "{$2}{$3}{size-used} / {size-total} ({size-percentage}{$2}) {#2}[{mountpoint} {#2}({filesystem})]",
+            "format": "{$2}{$3} {size-used} / {size-total} ({size-percentage}{$2}) {#2}({filesystem} {#2}at {#2}{mountpoint})",
         },
         {
             "type": "terminal",
             "key": "{#90}{$1}│ {#95}Terminal    {#90}│",
-            // "format": "{$2}{$3}{pretty-name} {#2}[{version}]",
-            "format": "{$2}{$3}{pretty-name} {#2}[{tty}]",
+            "format": "{$2}{$3} {pretty-name} {version}",
             // fastfetch -h terminal-format
             // {5}: Terminal pretty name - pretty-name
             // {6}: Terminal version - version
@@ -223,17 +223,17 @@
         {
             "type": "shell",
             "key": "{#90}{$1}│ {#95}Shell       {#90}│",
-            "format": "{$2}{$3}{exe-name} {#2}[v{version}] {#2}[{exe-path}] {#2}[PID:{pid}]",
+            "format": "{$2}{$3} {exe-name} {version}",
         },
         {
             "type": "wm",
             "key": "{#90}{$1}│ {#95}WM          {#90}│",
-            "format": "{$2}{$3}{protocol-name} {#2}[{pretty-name} {#2}{version}]",
+            "format": "{$2}{$3} {pretty-name} {version} {#2}({protocol-name})",
         },
         // {
         //     "type": "locale",
         //     "key": "{#90}{$1}│ {#95}Locale      {#90}│",
-        //     "format": "{$2}{$3}{result}",
+        //     "format": "{$2}{$3} {result}",
         // },
         {
             // localip IPv4
@@ -242,7 +242,7 @@
             "showPrefixLen": true,
             "showIpv4": true,
             "showIpv6": false,
-            "format": "{$2}{$3}{ifname}: {ipv4}  {#2}[MTU:{mtu}]",
+            "format": "{$2}{$3} {ifname}: {ipv4}",
         },
         {
             // localip IPv6
@@ -251,17 +251,17 @@
             "showPrefixLen": true,
             "showIpv4": false,
             "showIpv6": true,
-            "format": "{$2}{$3}{ifname}: {ipv6}  {#2}[MTU:{mtu}]",
+            "format": "{$2}{$3} {ifname}: {ipv6}",
         },
         {
             "type": "publicip",
             "key": "{#90}{$1}│ {#94}Public IPv4 {#90}│",
-            "format": "{$2}{$3}{ip}  {#2}[{location}]",
+            "format": "{$2}{$3} {ip} {#2}({location})",
         },
         // {
         //     "type": "dns",
         //     "key": "{#90}{$1}│ {#94}DNS         {#90}│",
-        //     "format": "{$2}{$3}{result}",
+        //     "format": "{$2}{$3} {result}",
         // },
         // CUSTOM - Button UI bar
         {

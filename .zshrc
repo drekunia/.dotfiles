@@ -323,7 +323,6 @@ auto-update() {
             uv tool upgrade --all
         fi
 
-        echo "Updating ZSH plugins..."
         update-zsh-plugins
 
         echo "--- System update and cleanup complete! ---"
@@ -345,7 +344,7 @@ update-zsh-plugins() {
         # Define the base directory (same as in your clone commands)
         local plugins_dir=${ZSH_PLUGINS:-~/.zsh/plugins}
 
-        echo "--- Updating Zsh plugins from $plugins_dir ---"
+        echo "Updating Zsh plugins from $plugins_dir"
 
         # Check if the plugins directory itself exists
         if [[ ! -d "$plugins_dir" ]]; then
@@ -373,7 +372,7 @@ update-zsh-plugins() {
             fi
         done
 
-        echo "--- Zsh plugin update complete! ---"
+        echo "Zsh plugin update complete!"
 
     else
         # If arguments were given, fail with 'command not found'
