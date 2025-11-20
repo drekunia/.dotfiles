@@ -1,21 +1,26 @@
 [tools]
+go = "latest"
+rust = "stable"
+node = "lts"
+elixir = "latest"
+erlang = "latest"
+java = "temurin-25"
+ruby = "latest"
+
+"go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
+"gem:jekyll" = "latest"
+
 "cargo:gen-license" = "latest"
 "cargo:gitnr" = "latest"
-"cargo:tealdeer" = "latest"
-"gem:jekyll" = "latest"
-"go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
-fastfetch = "latest"
-fzf = "latest"
-go = "latest"
-java = "temurin-25"
 lazydocker = "latest"
 lazygit = "latest"
+"cargo:tealdeer" = "latest"
 navi = "latest"
-node = "lts"
-ruby = "latest"
-rust = "stable"
-tree-sitter = "latest"
+fzf = "latest"
 yazi = "latest"
+fastfetch = "latest"
+
+tree-sitter = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
