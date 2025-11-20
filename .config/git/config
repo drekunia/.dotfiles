@@ -31,12 +31,12 @@
   submoduleSummary = true
   # Recursively traverse untracked directories to display all contents
   showUntrackedFiles = all
-# [commit]
-#   gpgsign = true
+[commit]
+  gpgsign = true
 [tag]
   # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
   sort = version:refname
-  # gpgsign = true
+  gpgsign = true
 [pull]
   # This is GREAT… when you know what you're doing and are careful
   # not to pull --no-rebase over a local line containing a true merge.
