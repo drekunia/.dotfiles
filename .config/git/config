@@ -158,3 +158,9 @@
   fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
   # Remove branches that have already been merged with current branch
   bye = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  # `git log` with patches shown with difftastic.
+  dl = -c diff.external=difft log -p --ext-diff
+  # Show the most recent commit with difftastic.
+  ds = -c diff.external=difft show --ext-diff
+  # `git diff` with difftastic.
+  difft = -c diff.external=difft diff
