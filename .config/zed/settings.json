@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   // trigger manually with ctrl-x ctrl-c
-  "show_edit_predictions": true,
+  "show_edit_predictions": false,
   "disable_ai": false,
 
   "wsl_connections": [
@@ -17,7 +17,7 @@
       "user": null,
       "projects": [
         {
-          "paths": ["/home/drekunia/Projects/blog"]
+          "paths": ["/home/drekunia/projects/blog"]
         }
       ]
     }

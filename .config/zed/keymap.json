@@ -16,52 +16,67 @@
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
-      // New file and folder on project panel
       "space f n": "project_panel::NewFile",
-      "ctrl-shift-n": "project_panel::NewDirectory"
+      "a": "project_panel::NewFile",
+      "d": "project_panel::Delete",
+      "ctrl-shift-n": "project_panel::NewDirectory",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "y": "project_panel::Copy",
+      "c": "workspace::CopyRelativePath",
+      "x": "project_panel::Cut",
+
+      "s": "project_panel::OpenSplitVertical",
+      "S": "project_panel::OpenSplitHorizontal",
+      "t": "project_panel::Open",
+      "H": "project_panel::ToggleHideGitIgnore",
+
+      "space f t": "terminal_panel::Toggle",
+      "space l": "zed::Extensions",
+      "space L": "zed::Extensions"
     }
   },
   {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
-      // New file or open recent project from empty pane
       "space f n": "workspace::NewFile",
       "space f p": "projects::OpenRecent",
+      "space f f": "file_finder::Toggle",
+      "space f g": "workspace::NewSearch",
 
-      // Toggle left or right dock
       "space w l": "workspace::ToggleRightDock",
       "space w right": "workspace::ToggleRightDock",
       "space w h": "workspace::ToggleLeftDock",
-      "space w left": "workspace::ToggleLeftDock"
+      "space w left": "workspace::ToggleLeftDock",
+
+      "space f t": "terminal_panel::Toggle",
+      "space l": "zed::Extensions",
+      "space L": "zed::Extensions"
     }
   },
   {
     "context": "Editor && vim_mode == normal || vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
-      // Move cursor and lines
-      "B": ["workspace::SendKeystrokes", "^"], // go to line start
-      "E": ["workspace::SendKeystrokes", "$"], // go to line end
+      "B": ["workspace::SendKeystrokes", "^"],
+      "E": ["workspace::SendKeystrokes", "$"],
       "J": "editor::MoveLineDown",
       "K": "editor::MoveLineUp",
 
-      // Black-hole register bindings (don't clobber paste buffer)
       "c": ["workspace::SendKeystrokes", "\" _ c"],
       "C": ["workspace::SendKeystrokes", "\" _ C"],
-      // "d": ["workspace::SendKeystrokes", "\" _ d"],
-      // "D": ["workspace::SendKeystrokes", "\" _ D
+      "d": ["workspace::SendKeystrokes", "\" _ d"],
+      "D": ["workspace::SendKeystrokes", "\" _ D"],
       "s": ["workspace::SendKeystrokes", "\" _ s"],
       "S": ["workspace::SendKeystrokes", "\" _ S"],
-      "x": ["workspace::SendKeystrokes", "\" _ x"],
-      "X": ["workspace::SendKeystrokes", "\" _ X"],
+      // "x": ["workspace::SendKeystrokes", "\" _ x"],
+      // "X": ["workspace::SendKeystrokes", "\" _ X"],
 
-      // Toggle comments
       "g c": "editor::ToggleComments"
     }
   },
   {
     "context": "Editor && vim_mode == insert && !VimWaiting && !menu",
     "bindings": {
-      // Escape sequences
       "j k": "vim::NormalBefore",
       "k j": "vim::NormalBefore"
     }
@@ -69,22 +84,26 @@
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      // Open markdown preview
       "space m p": "markdown::OpenPreview",
       "space m P": "markdown::OpenPreviewToTheSide",
 
-      // Show diagnostics for debugging
-      "space p e": "diagnostics::Deploy",
+      "space x x": "diagnostics::Deploy",
 
-      // New file or open recent project from editor
       "space f n": "workspace::NewFile",
       "space f p": "projects::OpenRecent",
+      "space f f": "file_finder::Toggle",
+      "space f g": "workspace::NewSearch",
 
-      // Toggle left or right dock
       "space w l": "workspace::ToggleRightDock",
       "space w right": "workspace::ToggleRightDock",
       "space w h": "workspace::ToggleLeftDock",
-      "space w left": "workspace::ToggleLeftDock"
+      "space w left": "workspace::ToggleLeftDock",
+      "space -": "pane::SplitDown",
+      "space |": "pane::SplitRight",
+
+      "space f t": "terminal_panel::Toggle",
+      "space l": "zed::Extensions",
+      "space L": "zed::Extensions"
     }
   }
 ]
