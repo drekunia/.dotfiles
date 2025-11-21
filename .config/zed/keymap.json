@@ -94,6 +94,12 @@
     }
   },
   {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "p": ["workspace::SendKeystrokes", "\" _ d P"]
+    }
+  },
+  {
     "context": "Editor && vim_mode == insert && !VimWaiting && !menu",
     "bindings": {
       "j k": "vim::NormalBefore",
