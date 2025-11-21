@@ -336,9 +336,7 @@ auto-update() {
         echo "--- System update and cleanup complete! ---"
 
     else
-        # If arguments were given (e.g., 'update --foo'),
-        # try to run the 'original' command.
-        # This will fail with 'command not found', as you wanted.
+        # This will fail with 'command not found'
         command auto-update "$@"
     fi
 }
