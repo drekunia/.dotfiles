@@ -12,16 +12,17 @@ ruby = "latest"
 
 tree-sitter = "latest"
 
+difftastic = "latest"
 "cargo:gen-license" = "latest"
 "cargo:gitnr" = "latest"
 lazydocker = "latest"
 lazygit = "latest"
+
 "cargo:tealdeer" = "latest"
 navi = "latest"
 fzf = "latest"
 yazi = "latest"
 fastfetch = "latest"
-difftastic = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
