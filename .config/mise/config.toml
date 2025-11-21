@@ -10,6 +10,8 @@ ruby = "latest"
 "go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
 "gem:jekyll" = "latest"
 
+tree-sitter = "latest"
+
 "cargo:gen-license" = "latest"
 "cargo:gitnr" = "latest"
 lazydocker = "latest"
@@ -19,8 +21,7 @@ navi = "latest"
 fzf = "latest"
 yazi = "latest"
 fastfetch = "latest"
-
-tree-sitter = "latest"
+difftastic = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"

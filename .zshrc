@@ -98,7 +98,7 @@ export LESS="-FR"
 
 # General aliases
 alias which-command=whence
-alias diff="diff --color=auto"
+alias diff="diff -u --color=auto"
 
 export WINDOWS_PROJECTS="/mnt/d/Files/Projects"
 alias godotdir=$WINDOWS_PROJECTS/Godot/
