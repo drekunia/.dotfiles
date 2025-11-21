@@ -7,8 +7,8 @@ local opts = { noremap = true, silent = true }
 
 -- Additions
 -- Delete without copying into register
-vim.keymap.set({ "n", "v" }, "d", '"_d', opts)
-vim.keymap.set({ "n", "v" }, "D", '"_D', opts)
+vim.keymap.set({ "n", "v" }, "x", '"_x', opts)
+vim.keymap.set({ "n", "v" }, "X", '"_X', opts)
 
 -- Vertical scroll and center
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)

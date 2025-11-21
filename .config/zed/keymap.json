@@ -16,6 +16,8 @@
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
+      // "ctrl-c": ["workspace::SendKeystrokes", "escape"],
+
       "space f n": "project_panel::NewFile",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
@@ -29,19 +31,15 @@
       "s": "project_panel::OpenSplitVertical",
       "S": "project_panel::OpenSplitHorizontal",
       "t": "project_panel::Open",
-      "H": "project_panel::ToggleHideGitIgnore",
-
-      "space f t": "terminal_panel::Toggle",
-      "space l": "zed::Extensions",
-      "space L": "zed::Extensions"
+      "H": "project_panel::ToggleHideGitIgnore"
     }
   },
   {
-    "context": "EmptyPane || SharedScreen",
+    "context": "EmptyPane || SharedScreen || ProjectPanel && not_editing || Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      "space f n": "workspace::NewFile",
-      "space f p": "projects::OpenRecent",
+      "space f r": "projects::OpenRecent",
       "space f f": "file_finder::Toggle",
+      "space space": "file_finder::Toggle",
       "space f g": "workspace::NewSearch",
 
       "space w l": "workspace::ToggleRightDock",
@@ -52,6 +50,27 @@
       "space f t": "terminal_panel::Toggle",
       "space l": "zed::Extensions",
       "space L": "zed::Extensions"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen || Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space f n": "workspace::NewFile"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide",
+
+      "space x x": "diagnostics::Deploy",
+
+      "space f e": "pane::RevealInProjectPanel",
+      "space e": "pane::RevealInProjectPanel",
+
+      "space -": "pane::SplitDown",
+      "space |": "pane::SplitRight"
     }
   },
   {
@@ -64,12 +83,12 @@
 
       "c": ["workspace::SendKeystrokes", "\" _ c"],
       "C": ["workspace::SendKeystrokes", "\" _ C"],
-      "d": ["workspace::SendKeystrokes", "\" _ d"],
-      "D": ["workspace::SendKeystrokes", "\" _ D"],
+      // "d": ["workspace::SendKeystrokes", "\" _ d"],
+      // "D": ["workspace::SendKeystrokes", "\" _ D"],
       "s": ["workspace::SendKeystrokes", "\" _ s"],
       "S": ["workspace::SendKeystrokes", "\" _ S"],
-      // "x": ["workspace::SendKeystrokes", "\" _ x"],
-      // "X": ["workspace::SendKeystrokes", "\" _ X"],
+      "x": ["workspace::SendKeystrokes", "\" _ x"],
+      "X": ["workspace::SendKeystrokes", "\" _ X"],
 
       "g c": "editor::ToggleComments"
     }
@@ -79,31 +98,6 @@
     "bindings": {
       "j k": "vim::NormalBefore",
       "k j": "vim::NormalBefore"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
-    "bindings": {
-      "space m p": "markdown::OpenPreview",
-      "space m P": "markdown::OpenPreviewToTheSide",
-
-      "space x x": "diagnostics::Deploy",
-
-      "space f n": "workspace::NewFile",
-      "space f p": "projects::OpenRecent",
-      "space f f": "file_finder::Toggle",
-      "space f g": "workspace::NewSearch",
-
-      "space w l": "workspace::ToggleRightDock",
-      "space w right": "workspace::ToggleRightDock",
-      "space w h": "workspace::ToggleLeftDock",
-      "space w left": "workspace::ToggleLeftDock",
-      "space -": "pane::SplitDown",
-      "space |": "pane::SplitRight",
-
-      "space f t": "terminal_panel::Toggle",
-      "space l": "zed::Extensions",
-      "space L": "zed::Extensions"
     }
   }
 ]
