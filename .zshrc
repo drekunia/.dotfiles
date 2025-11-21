@@ -98,7 +98,6 @@ export LESS="-FR"
 
 # General aliases
 alias which-command=whence
-alias diff="diff -u --color=auto"
 
 export WINDOWS_PROJECTS="/mnt/d/Files/Projects"
 alias godotdir=$WINDOWS_PROJECTS/Godot/
@@ -147,6 +146,14 @@ PATH=~/.console-ninja/.bin:$PATH
 # - keychain
 if [[ $(command -v keychain) ]]; then
   eval `keychain --eval --quiet`
+fi
+
+# - delta
+if command -v delta >/dev/null 2>&1; then
+  alias rdiff="$(which diff) -u --color=auto"
+  alias diff="$(which delta)"
+else
+  alias diff="$(which diff) -u --color=auto"
 fi
 
 # - bat
