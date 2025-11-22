@@ -307,24 +307,24 @@ auto-update() {
 
         echo "--- 4/4: Updating external tools ---"
 
-        # Check for mise and update it
+        # Check for mise plugins and update
         if command -v mise &>/dev/null; then
             echo "Updating mise..."
             mise upgrade
         fi
 
-        # Check for rustup and update it
+        # Check for rustup and cargo packages then update
         if command -v rustup &>/dev/null; then
             echo "Updating rustup..."
             rustup update
-
-            if command -v cargo-install-update &>/dev/null; then
-              echo "Updating cargo packages..."
-              cargo install-update -a
-            fi
         fi
 
-        # Check for uv and update it
+        if command -v cargo-install-update &>/dev/null; then
+          echo "Updating cargo packages..."
+          cargo install-update -a
+        fi
+
+        # Check for uv and tools then update
         if command -v uv &>/dev/null; then
             echo "Updating uv..."
             uv self update
