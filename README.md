@@ -121,7 +121,7 @@ CLI
 
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-- [uv](https://docs.astral.sh/uv/): All-in-one and extremely fast Python package manager written in rustc
+- [uv](https://docs.astral.sh/uv/): All-in-one and extremely fast Python package manager written in Rust
 - [Posting](https://posting.sh/): Terminal API client
 - [Harlequin](https://harlequin.sh/): Terminal database client (install `harlequin[postgres,mysql]` for adapters)
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
