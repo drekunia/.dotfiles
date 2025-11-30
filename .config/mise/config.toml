@@ -2,8 +2,6 @@
 go = "latest"
 rust = "stable"
 node = "lts"
-elixir = "latest"
-erlang = "latest"
 java = "temurin-25"
 ruby = "latest"
 
