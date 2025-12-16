@@ -16,8 +16,6 @@
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
-      // "ctrl-c": ["workspace::SendKeystrokes", "escape"],
-
       "space f n": "project_panel::NewFile",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
