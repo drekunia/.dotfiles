@@ -94,7 +94,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch $(uname -m)"
 export LESS="-FR"
 
-# export NO_GLYPH=true
+export NO_GLYPH=false
 
 # General aliases
 alias which-command=whence
@@ -117,7 +117,14 @@ alias wincodedir=$WINDOWS_PROJECTS/Code
 #   export EDITOR='nvim'
 # fi
 
-if [[ $(command -v nvim) ]]; then
+if command -v antigravity >/dev/null 2>&1 && ! command -v agy >/dev/null 2>&1; then
+  # alias agy=antigravity
+  agy() {
+    antigravity --remote wsl+Ubuntu "$(realpath "$1")"
+  }
+fi
+
+if command -v nvim >/dev/null 2>&1; then
   export EDITOR='nvim'
   alias vi=nvim
   alias vim=nvim
@@ -127,7 +134,7 @@ fi
 
 # - Version manager
 # mise
-if [[ $(command -v mise) ]]; then
+if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
@@ -144,7 +151,7 @@ PATH=~/.console-ninja/.bin:$PATH
 # ---------------------------------------------------------------------------------
 
 # - keychain
-if [[ $(command -v keychain) ]]; then
+if command -v keychain >/dev/null 2>&1; then
   eval `keychain --eval --quiet`
 fi
 
@@ -177,7 +184,7 @@ elif command -v bat >/dev/null 2>&1; then
 fi
 
 # - eza
-if [[ $(command -v eza) ]]; then
+if command -v eza >/dev/null 2>&1; then
   if $NO_GLYPH; then
     alias ls='eza --color=always --group-directories-first'
   else
@@ -205,7 +212,7 @@ fi
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgrep.conf"
 
 # - fzf
-if [[ $(command -v fzf) ]]; then
+if command -v fzf >/dev/null 2>&1; then
   export FZF_DEFAULT_OPTS='--no-height --color=bg+:#1a1b26,gutter:#32344a,pointer:#f7768e,info:#9ece6a,hl:#7aa2f7,hl+:#7dcfff'
 
   if type fd > /dev/null 2>&1; then
@@ -246,7 +253,7 @@ if [[ $(command -v fzf) ]]; then
 fi
 
 # - tmux
-if [[ $(command -v tmux) ]]; then
+if command -v tmux >/dev/null 2>&1; then
   # Use 256 color for tmux
   alias tmux="TERM=screen-256color-bce tmux"
 
@@ -256,19 +263,19 @@ if [[ $(command -v tmux) ]]; then
 fi
 
 # - zoxide
-if [[ $(command -v zoxide) ]]; then
+if command -v zoxide >/dev/null 2>&1; then
   export _ZO_RESOLVE_SYMLINKS=1
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
 # - harlequin
-if [[ $(command -v harlequin) ]]; then
+if command -v harlequin >/dev/null 2>&1; then
   alias harlequin="harlequin --theme tokyo-night"
   alias local-harlequin="harlequin -a postgres -h localhost -p 5432 -U postgres --password postgres"
 fi
 
 # - starship
-if [[ $(command -v starship) ]]; then
+if command -v starship >/dev/null 2>&1; then
   if $NO_GLYPH; then
     export STARSHIP_CONFIG=~/.config/starship/starship_no_glyph.toml
   else
