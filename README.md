@@ -12,7 +12,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 - Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html#using-the-apt-repo) (or Setup Windows Terminal for WSL)
 
-  For Windows Terminal, apply this [settings.json](https://gist.github.com/drekunia/8eb6db8024bdc668d7ccece28a820109) in Settings
+  For Windows Terminal, apply this [settings.json](https://codeberg.org/drekunia/snippets/src/branch/main/settings.json) in Settings
 
 - Install required packages
 
@@ -42,7 +42,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 - Clone this repository to home
 
   ```bash
-  git clone git@github.com:drekunia/.dotfiles.git ~/.dotfiles
+  git clone git@codeberg.org/drekunia/.dotfiles.git ~/.dotfiles
   ```
 
 - Create directories to avoid symlink to parent directories
