@@ -14,19 +14,15 @@
   "wsl_connections": [
     {
       "distro_name": "Ubuntu",
-      "user": null,
-      "projects": [
-        {
-          "paths": ["/home/drekunia/projects/blog"]
-        }
-      ]
+      "user": null
     }
   ],
 
   "agent": {
+    "default_profile": "ask",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-pro"
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
     },
     // "inline_assistant_model": {
     //   "provider": "ollama",
@@ -57,6 +53,9 @@
     "light": "Catppuccin Latte",
     "mode": "dark"
   },
+  // "experimental.theme_overrides": {
+  //   "background.appearance": "transparent"
+  // },
   "cursor_blink": false,
 
   "base_keymap": "VSCode",
@@ -91,6 +90,7 @@
     "dock": "right"
   },
   "project_panel": {
+    "hide_hidden": false,
     "dock": "right"
   },
 
@@ -98,6 +98,9 @@
     "font_family": "JetBrainsMono Nerd Font",
     "font_fallbacks": ["Cascadia Code"],
     "font_size": 13.0
+    // "shell": {
+    //     "program": "C:\\Program Files\\Git\\bin\\bash.exe"
+    // }
   },
 
   "telemetry": {
