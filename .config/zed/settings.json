@@ -9,7 +9,7 @@
 {
   // trigger manually with ctrl-x ctrl-c
   "show_edit_predictions": false,
-  "disable_ai": false,
+  "disable_ai": true,
 
   "wsl_connections": [
     {
