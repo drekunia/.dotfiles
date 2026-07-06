@@ -439,3 +439,7 @@ if command -v docker &>/dev/null; then
 fi
 
 # ---------------------------------------------------------------------------------
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/drekunia/.local/bin:$PATH"
