@@ -5,10 +5,10 @@ bun = "latest"
 difftastic = "latest"
 fastfetch = "latest"
 java = "temurin-25"
-lazygit = "latest"
 ruby = "latest"
 rust = "stable"
 tree-sitter = "latest"
+fzf = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
