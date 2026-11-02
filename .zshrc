@@ -117,13 +117,6 @@ alias wincodedir=$WINDOWS_PROJECTS/Code
 #   export EDITOR='nvim'
 # fi
 
-if command -v antigravity >/dev/null 2>&1 && ! command -v agy >/dev/null 2>&1; then
-  # alias agy=antigravity
-  agy() {
-    antigravity --remote wsl+Ubuntu "$(realpath "$1")"
-  }
-fi
-
 if command -v nvim >/dev/null 2>&1; then
   export EDITOR='nvim'
   alias vi=nvim
@@ -283,6 +276,72 @@ if command -v starship >/dev/null 2>&1; then
   fi
 
   eval "$(starship init zsh)"
+fi
+
+# - Codex on WSL
+if [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
+  codexw() {
+    local dir winpath
+
+    dir="$(realpath "${1:-.}")" || return 1
+
+    [[ -d "$dir" ]] || {
+      print -r -u2 -- "codexw: Directory does not exist: $dir"
+      return 1
+    }
+
+    winpath="$(wslpath -w "$dir")" || return 1
+
+    printf '%s' "$winpath" | clip.exe
+
+    powershell.exe -NoProfile -NonInteractive \
+      -Command "Start-Process 'codex://threads/new'"
+
+    print -r -- "Copied project path: $winpath"
+    print -r -- "In Codex: Ctrl+O → Ctrl+L → Ctrl+V → Enter"
+  }
+fi
+
+# - Google Antigravity on WSL
+if command -v antigravity >/dev/null 2>&1 && ! command -v agy >/dev/null 2>&1; then
+  # alias agy=antigravity
+  agy() {
+    antigravity --remote wsl+Ubuntu "$(realpath "$1")"
+  }
+fi
+
+if [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
+  agyw() {
+    local dir winpath
+
+    dir="$(realpath "${1:-.}")" || return 1
+
+    [[ -d "$dir" ]] || {
+        print -r -u2 -- "antigravityw: Directory does not exist: $dir"
+        return 1
+    }
+
+    # Convert WSL path to Windows UNC path
+    winpath="$(wslpath -w "$dir")" || return 1
+
+    # Launch the Windows Antigravity desktop app
+    powershell.exe -NoProfile -NonInteractive -Command '
+      $app = Join-Path $env:LOCALAPPDATA "Programs\Antigravity\Antigravity.exe"
+
+      if (-not (Test-Path -LiteralPath $app)) {
+        Write-Error "Antigravity desktop app is not installed"
+        exit 1
+      }
+
+      Start-Process -FilePath $app
+    ' || return 1
+
+    # Copy Windows path to clipboard
+    printf '%s' "$winpath" | clip.exe
+
+    print -r -- "Opened Antigravity"
+    print -r -- "Copied project path: $winpath"
+  }
 fi
 
 # ---------------------------------------------------------------------------------

@@ -7,6 +7,8 @@ java = "temurin-25"
 rust = "stable"
 tree-sitter = "latest"
 fzf = "latest"
+ruby = "3.4"
+bun = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
