@@ -42,7 +42,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 - Clone this repository to home
 
   ```bash
-  git clone git@codeberg.org/drekunia/.dotfiles.git ~/.dotfiles
+  git clone git@github.com:drekunia/.dotfiles.git ~/.dotfiles
   ```
 
 - Create directories to avoid symlink to parent directories
@@ -128,6 +128,7 @@ CLI
 - [Git LFS](https://git-lfs.com/): Git extension for versioning large files
 - [Ollama](https://ollama.com/download/linux)
 - `jq`: JSON formatter CLI (read [tutorial](https://jqlang.github.io/jq/tutorial/))
+- [fastfetch](https://github.com/fastfetch-cli/fastfetch): neofetch alternative (now has PPA)
 
 GUI
 
