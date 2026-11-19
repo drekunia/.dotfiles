@@ -351,148 +351,174 @@ fi
 # - General
 # Function to update and clean the system, including external tools
 auto-update() {
-    # Only run if no arguments are provided (e.g., just 'update')
-    if [[ $# -eq 0 ]]; then
-
-        echo "--- 1/4: Updating Apt package lists ---"
-        sudo apt update
-
-        # Check if the last command (apt update) was successful
-        if [[ $? -eq 0 ]]; then
-            echo "--- 2/4: Upgrading Apt packages ---"
-            sudo apt upgrade -y
-            sudo apt full-upgrade -y
-        else
-            echo "--- 'apt update' failed. Skipping Apt upgrades. ---"
-        fi
-
-        echo "--- 3/4: Cleaning Apt packages ---"
-        sudo apt clean
-        sudo apt autoclean
-        sudo apt autoremove -y
-
-        echo "--- 4/4: Updating external tools ---"
-
-        # Check for mise plugins and update
-        if command -v mise &>/dev/null; then
-            echo "Updating mise..."
-            mise upgrade
-        fi
-
-        # Check for rustup and cargo packages then update
-        if command -v rustup &>/dev/null; then
-            echo "Updating rustup..."
-            rustup update
-        fi
-
-        if command -v cargo-install-update &>/dev/null; then
-          echo "Updating cargo packages..."
-          cargo install-update -a
-        fi
-
-        # Check for uv and tools then update
-        if command -v uv &>/dev/null; then
-            echo "Updating uv..."
-            uv self update
-            uv tool upgrade --all
-        fi
-
-        update-zsh-plugins
-
-        echo "--- System update and cleanup complete! ---"
-
-    else
-        # This will fail with 'command not found'
-        command auto-update "$@"
+    # Do not accept any arguments
+    if (( $# > 0 )); then
+        echo "Usage: auto-update"
+        return 1
     fi
+
+    local failed=0
+
+    echo "--- 1/4: Updating APT packages ---"
+
+    if sudo apt update; then
+        if sudo apt full-upgrade -y; then
+            echo "Removing unused APT packages..."
+            sudo apt autoremove -y || failed=1
+        else
+            echo "APT full-upgrade failed."
+            failed=1
+        fi
+    else
+        echo "APT update failed. Skipping upgrades."
+        failed=1
+    fi
+
+    echo "--- 2/4: Cleaning APT cache ---"
+    sudo apt clean || failed=1
+
+    echo "--- 3/4: Updating development tools ---"
+
+    # Update mise-managed tools
+    if command -v mise &>/dev/null; then
+        echo "Updating mise-managed tools..."
+        mise upgrade --global || failed=1
+
+        # Synchronize Python installations with uv
+        if command -v uv &>/dev/null; then
+            echo "Synchronizing Python with uv..."
+            mise sync python --uv || failed=1
+        fi
+    fi
+
+    # Check for rustup and cargo packages then update
+    # if command -v rustup &>/dev/null; then
+    #     echo "Updating rustup..."
+    #     rustup update
+    # fi
+    #
+    # if command -v cargo-install-update &>/dev/null; then
+    #     echo "Updating cargo packages..."
+    #     cargo install-update -a
+    # fi
+    #
+    # Check for uv and tools then update
+    # if command -v uv &>/dev/null; then
+    #     echo "Updating uv..."
+    #     uv self update
+    #     uv tool upgrade --all
+    # fi
+
+    echo "--- 4/4: Updating Zsh plugins ---"
+
+    if (( $+functions[update-zsh-plugins] )); then
+        update-zsh-plugins || failed=1
+    fi
+
+    if (( failed )); then
+        echo "--- Update completed with errors. ---"
+        return 1
+    fi
+
+    echo "--- System update and cleanup complete! ---"
 }
 
 # - ZSH
 # Function to update all manually cloned Zsh plugins
 update-zsh-plugins() {
-    # Only run if no arguments are provided
-    if [[ $# -eq 0 ]]; then
-
-        # Define the base directory (same as in your clone commands)
-        local plugins_dir=${ZSH_PLUGINS:-~/.zsh/plugins}
-
-        echo "Updating Zsh plugins from $plugins_dir"
-
-        # Check if the plugins directory itself exists
-        if [[ ! -d "$plugins_dir" ]]; then
-            echo "Error: Plugin directory not found at $plugins_dir"
-            return 1 # Exit the function with an error
-        fi
-
-        # Loop through every item inside the plugins directory
-        # The (N) flag makes the loop do nothing if no matches are found
-        # The / flag matches only directories
-        for plugin_path in $plugins_dir/*(N/); do
-
-            # Check if the directory is a git repository
-            if [[ -d "$plugin_path/.git" ]]; then
-
-                # Get just the folder name for logging
-                local plugin_name=$(basename "$plugin_path")
-
-                echo "Updating $plugin_name..."
-
-                # Run the pull in a subshell to avoid changing your
-                # current directory.
-                ( cd "$plugin_path" && git pull )
-
-            fi
-        done
-
-        echo "Zsh plugin update complete!"
-
-    else
-        # If arguments were given, fail with 'command not found'
-        command update-zsh-plugins "$@"
+    # Do not accept any arguments
+    if (( $# > 0 )); then
+        echo "Usage: update-zsh-plugins"
+        return 1
     fi
+
+    local plugins_dir="${ZSH_PLUGINS:-$HOME/.zsh/plugins}"
+    local plugin_path
+    local -i updated=0 failed=0
+
+    # Validate dependencies and directory
+    if [[ ! -d "$plugins_dir" ]]; then
+        echo "Error: Plugin directory not found: $plugins_dir"
+        return 1
+    fi
+
+    if ! command -v git &>/dev/null; then
+        echo "Error: Git is not installed."
+        return 1
+    fi
+
+    echo "Updating Zsh plugins from $plugins_dir"
+
+    # Iterate through Git repositories
+    for plugin_path in "$plugins_dir"/*(N/); do
+        [[ -e "$plugin_path/.git" ]] || continue
+
+        echo "Updating ${plugin_path:t}..."
+
+        if git -C "$plugin_path" pull --ff-only; then
+            (( ++updated ))
+        else
+            echo "Failed to update ${plugin_path:t}"
+            (( ++failed ))
+        fi
+    done
+
+    echo "Zsh plugins: $updated successful, $failed failed."
+
+    (( failed == 0 ))
 }
 
 # - Docker
-# Check if docker is installed before defining docker functions
 if command -v docker &>/dev/null; then
 
-    # Function to run a default local postgresql container
     local-postgres-up() {
-        # Only run if no arguments are provided
-        if [[ $# -eq 0 ]]; then
-            echo "--- Starting local postgres container... ---"
-            docker run -d --name local_postgres \
-                -e POSTGRES_PASSWORD=postgres \
-                -p 5432:5432 \
-                -v local_pgdata:/var/lib/postgresql/data \
-                postgres:alpine
-
-            if [[ $? -eq 0 ]]; then
-                echo "--- Container 'local_postgres' started. ---"
-            else
-                echo "--- Failed to start container. It might already be running or an error occurred. ---"
-            fi
-        else
-            # Fail if any arguments are given
-            command local-postgres-up "$@"
+        if (( $# > 0 )); then
+            echo "Usage: local-postgres-up"
+            return 1
         fi
+
+        local name="local_postgres"
+
+        # Reuse an existing container
+        if docker container inspect "$name" &>/dev/null; then
+            if [[ "$(docker inspect -f '{{.State.Running}}' "$name")" == "true" ]]; then
+                echo "PostgreSQL is already running."
+                return 0
+            fi
+
+            echo "Starting existing PostgreSQL container..."
+            docker start "$name" >/dev/null || return 1
+        else
+            echo "Creating PostgreSQL container..."
+
+            docker run -d \
+                --pull always \
+                --name "$name" \
+                -e POSTGRES_PASSWORD=postgres \
+                -p 127.0.0.1:5432:5432 \
+                -v local_pgdata:/var/lib/postgresql \
+                postgres:alpine >/dev/null || return 1
+        fi
+
+        echo "PostgreSQL started on localhost:5432."
     }
 
-    # Function to stop and remove the local postgresql container
     local-postgres-down() {
-        # Only run if no arguments are provided
-        if [[ $# -eq 0 ]]; then
-            echo "--- Stopping and removing 'local_postgres' container... ---"
-            docker rm -f local_postgres
-            if [[ $? -eq 0 ]]; then
-                echo "--- Container 'local_postgres' removed. ---"
-            else
-                echo "--- Failed to remove container. It might not exist. ---"
-            fi
-        else
-            # Fail if any arguments are given
-            command local-postgres-down "$@"
+        if (( $# > 0 )); then
+            echo "Usage: local-postgres-down"
+            return 1
         fi
+
+        local name="local_postgres"
+
+        if ! docker container inspect "$name" &>/dev/null; then
+            echo "PostgreSQL container does not exist."
+            return 0
+        fi
+
+        docker rm -f "$name" >/dev/null || return 1
+
+        echo "PostgreSQL container removed. Data preserved."
     }
 
 fi

@@ -93,7 +93,6 @@ Or just disable signing in `.config/git/config`
 #### mise, Neovim, and LazyVim
 
 I use [LazyVim](https://www.lazyvim.org/) and some plugins have dependencies\
-I put `lazygit` on `mise` config and other packages are installed with `apt`
 
 - Install [mise-en-place](https://mise.jdx.dev/installing-mise.html)
 
@@ -101,13 +100,13 @@ I put `lazygit` on `mise` config and other packages are installed with `apt`
   (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)\
   To install `ruby`, `erlang`, and `elixir` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc` ([rustup](https://rustup.rs/))
 
-- Install `luarocks` and `xsel` (LazyVim dependencies)
+- Install `luarocks`, `xsel`, `lazygit` (LazyVim dependencies)
 
   ```bash
-  sudo apt install luarocks xsel
+  sudo apt install luarocks xsel lazygit
   ```
 
-- Install `python3-venv` (Ruff dependencies)
+- Install `python3-venv`(Ruff dependencies, **not needed if [uv](https://docs.astral.sh/uv/getting-started/installation/) exist**)
 
   ```bash
   sudo apt install python3-venv
@@ -121,9 +120,6 @@ CLI
 
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-- [uv](https://docs.astral.sh/uv/): All-in-one and extremely fast Python package manager written in Rust
-- [Posting](https://posting.sh/): Terminal API client
-- [Harlequin](https://harlequin.sh/): Terminal database client (install `harlequin[postgres,mysql]` for adapters)
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 - [Git LFS](https://git-lfs.com/): Git extension for versioning large files
 - [Ollama](https://ollama.com/download/linux)

@@ -1,15 +1,16 @@
 [tools]
 "cargo:gen-license" = "latest"
 "cargo:gitnr" = "latest"
+"pypi:harlequin" = { version = "latest", extras = "postgres,mysql" }
+"pypi:posting" = "latest"
+bun = "latest"
 difftastic = "latest"
-fastfetch = "latest"
 java = "temurin-25"
+node = "lts"
+ruby = "3.4"
 rust = "stable"
 tree-sitter = "latest"
-fzf = "latest"
-ruby = "3.4"
-bun = "latest"
-node = "lts"
+uv = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
