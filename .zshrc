@@ -94,7 +94,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch $(uname -m)"
 export LESS="-FR"
 
-export NO_GLYPH=false
+# export GLYPH=true
 
 # General aliases
 alias which-command=whence
@@ -178,10 +178,10 @@ fi
 
 # - eza
 if command -v eza >/dev/null 2>&1; then
-  if $NO_GLYPH; then
-    alias ls='eza --color=always --group-directories-first'
-  else
+  if $GLYPH; then
     alias ls='eza --color=always --group-directories-first --icons'
+  else
+    alias ls='eza --color=always --group-directories-first'
   fi
 
   alias ll='ls -la --octal-permissions'
@@ -206,7 +206,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgrep.conf"
 
 # - fzf
 if command -v fzf >/dev/null 2>&1; then
-  export FZF_DEFAULT_OPTS='--no-height --color=bg+:#1a1b26,gutter:#32344a,pointer:#f7768e,info:#9ece6a,hl:#7aa2f7,hl+:#7dcfff'
+  export FZF_DEFAULT_OPTS='--height=60% --reverse --color=bg+:#1a1b26,gutter:#32344a,pointer:#f7768e,info:#9ece6a,hl:#7aa2f7,hl+:#7dcfff'
 
   if type fd > /dev/null 2>&1; then
     export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden --follow --exclude .git'
@@ -221,10 +221,10 @@ if command -v fzf >/dev/null 2>&1; then
   fi
 
   if type eza > /dev/null 2>&1; then
-    if $NO_GLYPH; then
-      export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first {}'"
-    else
+    if $GLYPH; then
       export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {}'"
+    else
+      export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first {}'"
     fi
   elif type tree > /dev/null 2>&1; then
     export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
@@ -235,14 +235,49 @@ if command -v fzf >/dev/null 2>&1; then
   . /usr/share/doc/fzf/examples/key-bindings.zsh
   . /usr/share/doc/fzf/examples/completion.zsh
 
-  # Kill process
-  fzf-kill() {
-    local pid
-    pid=$(ps -ef | sed 1d | fzf --header-lines=1 --preview 'echo {}' --header 'Select a process to kill' | awk '{print $2}')
-    if [ -n "$pid" ]; then
-      kill -9 "$pid"
-    fi
-  }
+# - Kill process with fzf
+    fzf-kill() {
+        if (( $# > 0 )); then
+            echo "Usage: fzf-kill"
+            return 1
+        fi
+
+        local selection pid
+
+        selection=$(ps -eo pid,ppid,user,%cpu,%mem,etime,stat,comm=NAME --sort=-%cpu |
+            fzf \
+                --header-lines=1 \
+                --prompt="Kill process > " \
+                --border \
+                --preview-window="wrap" \
+                --preview '
+                    ps -p {1} -o pid,ppid,user,%cpu,%mem,etime,stat,comm=NAME
+                
+                    printf "\nStarted:\n"
+                    ps -p {1} -o lstart=
+                
+                    printf "\nCommand:\n"
+                    ps -ww -p {1} -o args=
+                
+                    printf "\nExecutable:\n"
+                    readlink -f /proc/{1}/exe 2>/dev/null
+                
+                    printf "\nWorking directory:\n"
+                    readlink -f /proc/{1}/cwd 2>/dev/null
+                ') || return 0
+
+        [[ -n "$selection" ]] || return 0
+
+        pid=$(awk '{print $1}' <<< "$selection")
+
+        if kill -TERM "$pid"; then
+            echo "Sent SIGTERM to process $pid."
+        else
+            echo "Failed to terminate process $pid."
+            return 1
+        fi
+    }
+
 fi
 
 # - tmux
@@ -269,10 +304,10 @@ fi
 
 # - starship
 if command -v starship >/dev/null 2>&1; then
-  if $NO_GLYPH; then
-    export STARSHIP_CONFIG=~/.config/starship/starship_no_glyph.toml
-  else
+  if $GLYPH; then
     export STARSHIP_CONFIG=~/.config/starship/starship.toml
+  else
+    export STARSHIP_CONFIG=~/.config/starship/starship_no_glyph.toml
   fi
 
   eval "$(starship init zsh)"
