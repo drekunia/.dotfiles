@@ -190,7 +190,7 @@ if command -v eza >/dev/null 2>&1; then
   alias la='ls --long --all --group'
   alias lx='ls -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
   alias lS='ls -1'
-  alias lt='ls --tree --level=2'
+  alias lt='ls --tree --level=3'
   alias ltag='ls --tree --all --git-ignore'
   alias l.="eza -a | grep -E '^\.'"
 else

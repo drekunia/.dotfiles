@@ -1,0 +1,1 @@
+require("detailed"):setup()

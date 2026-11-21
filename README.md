@@ -119,6 +119,7 @@ I use [LazyVim](https://www.lazyvim.org/) and some plugins have dependencies\
 CLI
 
 - [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
+- [yazi](https://yazi-rs.github.io/docs/installation#apt): TUI file explorer
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
 - [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 - [Git LFS](https://git-lfs.com/): Git extension for versioning large files

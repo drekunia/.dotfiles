@@ -1,2 +1,5 @@
 [mgr]
+linemode = "detailed"
 show_hidden = true
+[preview]
+wrap = "yes"

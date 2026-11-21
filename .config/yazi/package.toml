@@ -1,0 +1,22 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-frappe"
+rev = "38c08d8"
+hash = "7d6e604c6f458f57e5c27d19163203c5"
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "8e6296f"
+hash = "d9da921c3bd37ba32ee27a8a7a40461f"
+
+[[flavor.deps]]
+use = "AdithyanA2005/nord"
+rev = "5bafa82"
+hash = "5b64f098ab4b867de90561685c8f9b32"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:dracula"
+rev = "38c08d8"
+hash = "4879c0dfb12f728c92c09e8749728f6f"
