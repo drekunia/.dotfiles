@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/v0.57.0/schema/config.json
+git:
+  pagers:
+    - externalDiffCommand: difft --color=always
+    # - pager: delta --dark --paging=never
