@@ -11,6 +11,7 @@ ruby = "3.4"
 rust = "stable"
 tree-sitter = "latest"
 uv = "latest"
+"pypi:sherlock-project" = "latest"
 
 [env]
 GOPATH = "{{env.HOME}}/.go"
