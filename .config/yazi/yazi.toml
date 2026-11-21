@@ -1,5 +1,14 @@
 [mgr]
 linemode = "detailed"
 show_hidden = true
+
 [preview]
 wrap = "yes"
+
+[[plugin.prepend_previewers]]
+mime = "{audio,video,image}/*"
+run = "center-media"
+
+[[plugin.prepend_preloaders]]
+mime = "{audio,video,image}/*"
+run = "center-media"
