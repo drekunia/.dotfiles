@@ -3,6 +3,11 @@ use = "ENEmyr/center-media"
 rev = "390ddbd"
 hash = "bbecbe10813723de3c1a0a66c29ba9aa"
 
+[[plugin.deps]]
+use = "drekunia/detailed"
+rev = "f73e72d"
+hash = "d5438aa43731cf25b606fd77c1d7f1f"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-frappe"
 rev = "38c08d8"
