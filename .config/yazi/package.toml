@@ -8,22 +8,22 @@ use = "drekunia/detailed"
 rev = "f73e72d"
 hash = "d5438aa43731cf25b606fd77c1d7f1f"
 
-[[flavor.deps]]
-use = "yazi-rs/flavors:catppuccin-frappe"
-rev = "38c08d8"
-hash = "7d6e604c6f458f57e5c27d19163203c5"
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "1ef5fe0"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
-[[flavor.deps]]
-use = "BennyOe/tokyo-night"
-rev = "8e6296f"
-hash = "d9da921c3bd37ba32ee27a8a7a40461f"
+[[plugin.deps]]
+use = "qwjyh/relative-path"
+rev = "87dcc68"
+hash = "7a423e9b7e89803105442878eb0fe242"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "1ef5fe0"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[flavor.deps]]
 use = "AdithyanA2005/nord"
 rev = "5bafa82"
 hash = "5b64f098ab4b867de90561685c8f9b32"
-
-[[flavor.deps]]
-use = "yazi-rs/flavors:dracula"
-rev = "38c08d8"
-hash = "4879c0dfb12f728c92c09e8749728f6f"

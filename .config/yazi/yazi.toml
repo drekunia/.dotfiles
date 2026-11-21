@@ -13,3 +13,13 @@ run = "center-media"
 [[plugin.prepend_preloaders]]
 mime = "{audio,video,image}/*"
 run = "center-media"
+
+[[plugin.prepend_fetchers]]
+url = "*"
+run = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url = "*/"
+run = "git"
+group = "git"
