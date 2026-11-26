@@ -1,3 +1,5 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
 format = """
 $directory\
 $git_branch\
@@ -58,13 +60,14 @@ format = '[$path ]($style)'
 truncation_length = 3
 truncation_symbol = '…/'
 truncate_to_repo = false
+use_os_path_sep = false
+read_only = '󰌾 '
 
 [directory.substitutions]
 'Documents' = '󰈙 '
 'Downloads' = ' '
 'Music' = ' '
 'Pictures' = ' '
-read_only = '󰌾 '
 
 [git_branch]
 style = 'fg:green'
@@ -196,9 +199,7 @@ symbol = " "
 [docker_context]
 symbol = ' '
 style = 'fg:#06969A'
-format = '[$symbol]($style) $path'
-detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
-detect_extensions = ['Dockerfile']
+format = '[$symbol$context ]($style)'
 
 [aws]
 symbol = ' '
@@ -220,6 +221,7 @@ style = 'fg:gray'
 format = '[$duration]($style)'
 
 [memory_usage]
+disabled = false
 symbol = "󰍛 "
 
 [os.symbols]
@@ -309,4 +311,3 @@ gray = '#565f89'
 cyan = '#7dcfff'
 black = '#15161e'
 white = '#c0caf5'
-
