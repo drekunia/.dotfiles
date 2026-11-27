@@ -6,7 +6,9 @@
 export GPG_TTY=$(tty)
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+typeset -U path PATH
+
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 
 # ---------------------------------------------------------------------------------
 # ZSH
@@ -16,7 +18,7 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 HISTSIZE=10000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
+# HISTDUP=erase
 
 setopt BANG_HIST              # Treat the '!' character specially during expansion.
 setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
@@ -132,7 +134,9 @@ alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 # - VS Code Extensions
 # Console Ninja
-PATH=~/.console-ninja/.bin:$PATH
+if [[ -d "$HOME/.console-ninja/.bin" ]]; then
+    export PATH="$HOME/.console-ninja/.bin:$PATH"
+fi
 
 # ---------------------------------------------------------------------------------
 # Shell Tools
@@ -145,30 +149,25 @@ fi
 
 # - delta
 if command -v delta >/dev/null 2>&1; then
-  alias rdiff="$(which diff) -u --color=auto"
-  alias diff="$(which delta)"
+    alias rdiff='command diff -u --color=auto'
+    alias diff='delta'
 else
-  alias diff="$(which diff) -u --color=auto"
+    alias diff='command diff -u --color=auto'
 fi
 
 # - bat
 if command -v batcat >/dev/null 2>&1; then
-  # Save the original system `cat` under `rcat`
-  alias rcat="$(which cat)"
+    alias rcat='command cat'
+    alias cat='batcat'
 
-  # For Ubuntu and Debian-based `bat` packages
-  # the `bat` program is named `batcat` on these systems
-  alias cat="$(which batcat)"
-  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-  export MANROFFOPT="-c"
+    export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+    export MANROFFOPT="-c"
 elif command -v bat >/dev/null 2>&1; then
-  # Save the original system `cat` under `rcat`
-  alias rcat="$(which cat)"
+    alias rcat='command cat'
+    alias cat='bat'
 
-  # For all other systems
-  alias cat="$(which bat)"
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-  export MANROFFOPT="-c"
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
 fi
 
 # - eza
@@ -226,9 +225,7 @@ if command -v fzf >/dev/null 2>&1; then
   fi
 
   # Set up fzf keybindings and fuzzy completion
-  # source <(fzf --zsh)
-  . /usr/share/doc/fzf/examples/key-bindings.zsh
-  . /usr/share/doc/fzf/examples/completion.zsh
+  source <(fzf --zsh)
 
 # - Kill process with fzf
     fzf-kill() {
