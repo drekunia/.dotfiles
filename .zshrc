@@ -97,8 +97,6 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch $(uname -m)"
 export LESS="-FR"
 
-# export GLYPH=true
-
 # General aliases
 alias which-command=whence
 
@@ -172,12 +170,7 @@ fi
 
 # - eza
 if command -v eza >/dev/null 2>&1; then
-  if $GLYPH; then
-    alias ls='eza --color=always --group-directories-first --icons'
-  else
-    alias ls='eza --color=always --group-directories-first'
-  fi
-
+  alias ls='eza --color=always --group-directories-first --icons'
   alias ll='ls -la --octal-permissions'
   alias l='ls -bGF --header --git'
   alias llm='ls -lbGd --header --git --sort=modified'
@@ -215,11 +208,7 @@ if command -v fzf >/dev/null 2>&1; then
   fi
 
   if type eza > /dev/null 2>&1; then
-    if $GLYPH; then
-      export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {}'"
-    else
-      export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first {}'"
-    fi
+    export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --group-directories-first --icons {}'"
   elif type tree > /dev/null 2>&1; then
     export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
   fi
@@ -295,13 +284,8 @@ if command -v harlequin >/dev/null 2>&1; then
 fi
 
 # - starship
+# - starship
 if command -v starship >/dev/null 2>&1; then
-  if $GLYPH; then
-    export STARSHIP_CONFIG=~/.config/starship/starship.toml
-  else
-    export STARSHIP_CONFIG=~/.config/starship/starship_no_glyph.toml
-  fi
-
   eval "$(starship init zsh)"
 fi
 
