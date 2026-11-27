@@ -12,7 +12,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 
 - Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html#using-the-apt-repo) (or Setup Windows Terminal for WSL)
 
-  For Windows Terminal, apply this [settings.json](https://gist.github.com/drekunia/3d18f3a3f6aad5aa1953cbc385b3653f) in Settings
+  For Windows Terminal, apply this [settings.json](https://github.com/drekunia/dotfiles-windows/blob/main/home/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json) in Settings
 
 - Install required packages
 
