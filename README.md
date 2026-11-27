@@ -42,7 +42,7 @@ For Mac environment, use [Homebrew](https://brew.sh/) instead.
 - Clone this repository to home
 
   ```bash
-  git clone git@github.com:drekunia/.dotfiles.git ~/.dotfiles
+  git clone git@github.com:drekunia/dotfiles.git ~/.dotfiles
   ```
 
 - Create directories to avoid symlink to parent directories
