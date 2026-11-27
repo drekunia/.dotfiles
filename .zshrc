@@ -99,12 +99,6 @@ export LESS="-FR"
 # General aliases
 alias which-command=whence
 
-export WINDOWS_PROJECTS="/mnt/d/Files/Projects"
-alias godotdir=$WINDOWS_PROJECTS/Godot/
-alias unitydir=$WINDOWS_PROJECTS/Unity/
-alias unrealdir="$WINDOWS_PROJECTS/Unreal\ Projects/"
-alias wincodedir=$WINDOWS_PROJECTS/Code
-
 # ---------------------------------------------------------------------------------
 # Development Environment
 # ---------------------------------------------------------------------------------
@@ -198,7 +192,7 @@ else
   alias ll='ls -lh'
   alias l='ls -lah'
   alias la='ls -lAh'
-  alias lsa'ls -lah'
+  alias lsa='ls -lah'
 fi
 
 # - ripgrep
@@ -560,6 +554,3 @@ fi
 
 # ---------------------------------------------------------------------------------
 
-
-# Added by Antigravity CLI installer
-export PATH="/home/drekunia/.local/bin:$PATH"

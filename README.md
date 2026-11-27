@@ -1,144 +1,112 @@
 # My dotfiles
 
-This repository contains the dotfiles for my system.
-I aim to make this setup to be easy to replicate mainly on Ubuntu and Debian based OS, so here I use `apt` for the installation.
-For Mac environment, use [Homebrew](https://brew.sh/) instead.
+My personal Linux/WSL configuration files, managed with [GNU Stow](https://www.gnu.org/software/stow/). Mainly intended for Ubuntu and Debian-based distributions.
+
+For my Windows configuration, see [dotfiles-windows](https://github.com/drekunia/dotfiles-windows).
 
 ## Installation
 
-### Shell Tools
+### Shell tools
 
-- Install [Jetbrains Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases)
-
-- Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html#using-the-apt-repo) (or Setup Windows Terminal for WSL)
-
-  For Windows Terminal, apply this [settings.json](https://github.com/drekunia/dotfiles-windows/blob/main/home/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json) in Settings
-
-- Install required packages
+- Install [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads).
+- Install [WezTerm](https://wezfurlong.org/wezterm/install/linux.html) or use [my Windows Terminal settings](https://github.com/drekunia/dotfiles-windows/blob/main/home/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json) for WSL.
+- Install dependencies:
 
   ```bash
   sudo apt install stow zsh git git-delta bat fd-find eza zoxide ripgrep fzf tmux keychain
   ```
 
-  (`eza` can be replaced with `tree` for `fzf` preview)
-
-- Symlink `fdfind` to local PATH (see [more details](https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu))
+- Symlink `fdfind` to `fd`:
 
   ```bash
-  mkdir ~/.local/bin -p; \
-  ln -s $(which fdfind) ~/.local/bin/fd
+  mkdir -p ~/.local/bin
+  ln -s "$(command -v fdfind)" ~/.local/bin/fd
   ```
 
-- Setup Git credentials (SSH key in my case)\
-  Create or import SSH keypair and make sure it's not too open
+- Set up SSH for Git authentication and signing. Create or import an Ed25519 keypair:
 
   ```bash
-  chmod 700 ~/.ssh; \
-  chmod 644 ~/.ssh/id_ed25519.pub; \
-  chmod 600 ~/.ssh/id_ed25519; \
-  ssh-add
+  chmod 700 ~/.ssh
+  chmod 600 ~/.ssh/id_ed25519
+  chmod 644 ~/.ssh/id_ed25519.pub
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_ed25519
   ```
 
-- Clone this repository to home
+- Clone and stow the dotfiles:
 
   ```bash
   git clone git@github.com:drekunia/dotfiles.git ~/.dotfiles
+  mkdir -p ~/{.config/gh,.vim,.zsh,.ssh,.gnupg}
+  cd ~/.dotfiles
+  stow .
   ```
 
-- Create directories to avoid symlink to parent directories
+  Back up existing configuration files and resolve any conflicts before running `stow .`.
+
+- Set Zsh as the default shell, then restart the terminal:
 
   ```bash
-  mkdir ~/{.config/gh,.vim,.zsh,.ssh,.gnupg} -p
+  chsh -s "$(command -v zsh)"
   ```
 
-- Stow the configs
-
-  ```bash
-  cd ~/.dotfiles && stow .
-  ```
-
-  (sometimes needs to resolve conflicts in case of duplicates)
-
-- Change default shell to ZSH
-
-  ```bash
-  chsh -s $(which zsh)
-  ```
-
-- **Restart Terminal**
-
-- Generate locale (if not available)
+- Generate the locale if needed:
 
   ```bash
   sudo locale-gen en_US.UTF-8
   ```
 
-- Clone ZSH plugins
+- Install Zsh plugins:
 
   ```bash
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_PLUGINS:-~/.zsh/plugins}/zsh-autosuggestions; \
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_PLUGINS:-~/.zsh/plugins}/zsh-syntax-highlighting; \
-  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_PLUGINS:-~/.zsh/plugins}/you-should-use; \
-  git clone https://github.com/zsh-users/zsh-history-substring-search.git ${ZSH_PLUGINS:-~/.zsh/plugins}/zsh-history-substring-search
+  mkdir -p "${ZSH_PLUGINS:-$HOME/.zsh/plugins}"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS:-$HOME/.zsh/plugins}/zsh-autosuggestions"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting "${ZSH_PLUGINS:-$HOME/.zsh/plugins}/zsh-syntax-highlighting"
+  git clone https://github.com/MichaelAquilina/zsh-you-should-use "${ZSH_PLUGINS:-$HOME/.zsh/plugins}/you-should-use"
+  git clone https://github.com/zsh-users/zsh-history-substring-search "${ZSH_PLUGINS:-$HOME/.zsh/plugins}/zsh-history-substring-search"
   ```
 
-- Install [Starship](https://starship.rs/#quick-install)
+- Install [Starship](https://starship.rs/#quick-install).
 
-### Development Environment
+### Development environment
 
-#### GPG keypair for signing Git commit
+#### Git
 
-Or just disable signing in `.config/git/config`
+Git configuration and global ignore rules are located in `~/.config/git/`. Adjust the identity and signing key in `config` if needed.
+
+SSH signing is enabled for commits and tags. Alternatively, disable signing in `~/.config/git/config`.
+
+Install [GitHub CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md) and [Git LFS](https://git-lfs.com/).
+
+```bash
+gh auth login
+```
 
 #### mise, Neovim, and LazyVim
 
-I use [LazyVim](https://www.lazyvim.org/) and some plugins have dependencies\
-
-- Install [mise-en-place](https://mise.jdx.dev/installing-mise.html)
-
-- **Restart Terminal** and run `mise install`\
-  (check the [plugin details](https://mise.jdx.dev/plugins.html) for requirements if the install fails)\
-  To install `ruby`, `erlang`, and `elixir` plugin, install these [dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) along with `rustc` ([rustup](https://rustup.rs/))
-
-- Install `luarocks`, `xsel`, `lazygit` (LazyVim dependencies)
+- Install development dependencies:
 
   ```bash
-  sudo apt install luarocks xsel lazygit
+  sudo apt install build-essential luarocks xsel lazygit
   ```
 
-- Install `python3-venv`(Ruff dependencies, **not needed if [uv](https://docs.astral.sh/uv/getting-started/installation/) exist**)
+- Install [Ruby build dependencies](https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint) if needed.
+- Install [mise](https://mise.jdx.dev/installing-mise.html), restart the terminal, and run `mise install`.
+- Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu) (see [LazyVim requirements](https://www.lazyvim.org/installation)).
 
-  ```bash
-  sudo apt install python3-venv
-  ```
+#### Other tools
 
-- Install [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu) (v0.10.0 or later)
-
-#### Other common dev tools
-
-CLI
-
-- [wslu](https://wslutiliti.es/wslu/install.html#ubuntu): A collection of utilities for WSL (including `xdg-open`)
-- [yazi](https://yazi-rs.github.io/docs/installation#apt): TUI file explorer
+- [wslu](https://wslutiliti.es/wslu/install.html#ubuntu) (WSL only)
+- [Yazi](https://yazi-rs.github.io/docs/installation#apt)
 - [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-- [Github CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
-- [Git LFS](https://git-lfs.com/): Git extension for versioning large files
 - [Ollama](https://ollama.com/download/linux)
-- `jq`: JSON formatter CLI (read [tutorial](https://jqlang.github.io/jq/tutorial/))
-- [fastfetch](https://github.com/fastfetch-cli/fastfetch): neofetch alternative (now has PPA)
-
-GUI
-
+- [jq](https://jqlang.github.io/jq/)
+- [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - [Google Chrome](https://www.google.com/linuxrepositories/)
 
-  ```
-  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo tee /etc/apt/trusted.gpg.d/google.asc >/dev/null && \
-  echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google.list && \
-  sudo apt update && sudo apt install google-chrome-stable
-  ```
+## Other useful tools
 
-## Other useful packages to install (or not)
+- [WireGuard](https://protonvpn.com/support/wireguard-linux#cli)
+- [cheat.sh](https://cheat.sh)
+- [qrenco.de](https://qrenco.de)
 
-- `wireguard`: CLI VPN client (read [setup guide](https://protonvpn.com/support/wireguard-linux#cli))
-- [cheat.sh](https://cheat.sh): cheatsheet like manpage (use curl, no need to install)
-- [qrenco.de](https://qrenco.de): same like [cheat.sh](https://cheat.sh) but for QR encoding string
