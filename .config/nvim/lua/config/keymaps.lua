@@ -1,44 +1,68 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+local function map(mode, lhs, rhs, opts)
+	vim.keymap.set(
+		mode,
+		lhs,
+		rhs,
+		vim.tbl_extend("force", {
+			silent = true,
+		}, opts or {})
+	)
+end
 
--- For conciseness
-local opts = { noremap = true, silent = true }
+-- Editing without overwriting registers
+map({ "n", "x" }, "x", '"_x', { desc = "Delete without yanking" })
+map({ "n", "x" }, "X", '"_X', { desc = "Delete without yanking backward" })
+map({ "n", "x" }, "c", '"_c', { desc = "Change without yanking" })
+map({ "n", "x" }, "C", '"_C', { desc = "Change without yanking to end of line" })
+map("x", "p", "P", { desc = "Paste without overwriting register" })
 
--- Additions
--- Delete without copying into register
-vim.keymap.set({ "n", "v" }, "x", '"_x', opts)
-vim.keymap.set({ "n", "v" }, "X", '"_X', opts)
+-- Movement
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+map("n", "B", "^", { desc = "First nonblank character" })
+map("n", "E", "$", { desc = "End of line" })
 
--- Vertical scroll and center
-vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
-vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+-- Move lines using LazyVim's existing mappings
+map({ "n", "x" }, "J", "<A-j>", { remap = true, desc = "Move lines down" })
+map({ "n", "x" }, "K", "<A-k>", { remap = true, desc = "Move lines up" })
 
--- Moves to the EOL with `E` and BOL with `B`
-vim.keymap.set("n", "E", "$", opts)
-vim.keymap.set("n", "B", "^", opts)
+-- Exit insert mode
+map("i", "jk", "<Esc>")
+map("i", "kj", "<Esc>")
+map("i", "<C-c>", "<Esc>")
 
--- Press jk fast to exit insert mode
-vim.keymap.set("i", "jk", "<ESC>", opts)
-vim.keymap.set("i", "kj", "<ESC>", opts)
+-- Search navigation and centering
+map("n", "n", "'Nn'[v:searchforward] . 'zzzv'", {
+	expr = true,
+	desc = "Next search result",
+})
 
--- Maps `<C-c>` to `ESC` in insert mode
-vim.keymap.set("i", "<C-c>", "<Esc>", opts)
+map("n", "N", "'nN'[v:searchforward] . 'zzzv'", {
+	expr = true,
+	desc = "Previous search result",
+})
 
--- Keep last yangked when pasting
-vim.keymap.set("v", "p", '"_dP', opts)
+-- Clear search highlighting, snippets, and Noice messages
+map({ "n", "i", "s" }, "<Esc>", function()
+	vim.cmd.nohlsearch()
+	LazyVim.cmp.actions.snippet_stop()
 
--- Change text without affecting registers
-vim.keymap.set({ "n", "v" }, "c", '"_c', opts)
-vim.keymap.set({ "n", "v" }, "C", '"_C', opts)
+	if package.loaded["noice"] then
+		vim.schedule(function()
+			require("noice").cmd("dismiss")
+		end)
+	end
+
+	return "<Esc>"
+end, { expr = true, desc = "Escape and clear search" })
+
+-- Save without leaving the current mode
+map({ "n", "i", "x" }, "<C-s>", "<cmd>write<cr>", {
+	desc = "Save file",
+})
 
 -- Plugins
--- inc-rename
-vim.keymap.set("n", "<leader>rn", ":IncRename ")
-
--- Overwrite LazyVim
--- Move selected text up or down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
-vim.keymap.set("n", "J", "<cmd>execute 'move .+' . v:count1<cr>==", opts)
-vim.keymap.set("n", "K", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", opts)
+map("n", "<leader>rn", ":IncRename ", {
+	silent = false,
+	desc = "Incremental rename",
+})

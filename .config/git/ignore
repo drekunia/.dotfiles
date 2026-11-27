@@ -1,10 +1,7 @@
-# Mac
-**/.DS_Store
-**/._.DS_Store
+# --- macOS ---
+
 .DS_Store
-.DS_Store?
 ._*
-._.DS_Store
 .AppleDB
 .AppleDesktop
 .AppleDouble
@@ -21,54 +18,49 @@
 Network Trash Folder
 Temporary Items
 
-# Windows
-*:Zone.Identifier
-Thumbs.db
-ehthumbs.db
+# --- Windows ---
 
-# vi/vim
-*.swp
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*:Zone.Identifier
+
+# --- Linux ---
+
+.directory
+.Trash-*
+.fuse_hidden*
+
+# --- Vim / Neovim ---
+
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
 *~
 .netrwhist
 
-# VS Code
-.vscode/
+# --- Visual Studio ---
 
-# Visual Studio
-*.obj
-*.exe
-*.pdb
-*.user
-*.aps
-*.pch
-*.vspscc
-*_i.c
-*_p.c
-*.ncb
+.vs/
 *.suo
-*.tlb
-*.tlh
-# *.bak
-*.cache
-*.ilk
-*.log
-*.dll
-*.lib
-*.sbr
+*.user
+*.userosscache
+*.sln.docstates
 
+# --- JetBrains ---
 
-# WebStorm
-.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
 
-# Git
+# --- Git ---
+
 *.orig
 
-# General
-log/
-*.log
+# --- Editor temporary files ---
 
-# Node
-node_modules/
-
-# Elixir
-.elixir_ls/
+\#*\#
+.\#*
