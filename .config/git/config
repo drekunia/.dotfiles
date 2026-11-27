@@ -51,8 +51,6 @@
 	patternType = extended
 [init]
 	defaultBranch = main
-[interactive]
-	diffFilter = delta --color-only
 [log]
 	abbrevCommit = true
 [merge]
