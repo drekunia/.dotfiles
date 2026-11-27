@@ -9,9 +9,8 @@
   {
     "context": "Workspace",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
-      "alt-q": "terminal_panel::Toggle"
-    }
+      "alt-q": "terminal_panel::Toggle",
+    },
   },
   {
     "context": "ProjectPanel && not_editing",
@@ -29,8 +28,8 @@
       "s": "project_panel::OpenSplitVertical",
       "S": "project_panel::OpenSplitHorizontal",
       "t": "project_panel::Open",
-      "H": "project_panel::ToggleHideGitIgnore"
-    }
+      "H": "project_panel::ToggleHideGitIgnore",
+    },
   },
   {
     "context": "EmptyPane || SharedScreen || ProjectPanel && not_editing || Editor && vim_mode == normal && !VimWaiting && !menu",
@@ -38,6 +37,8 @@
       "space f p": "projects::OpenRecent",
       "space f f": "file_finder::Toggle",
       "space space": "file_finder::Toggle",
+      "space /": "workspace::NewSearch",
+      "space s g": "workspace::NewSearch",
       "space f g": "workspace::NewSearch",
 
       "space w l": "workspace::ToggleRightDock",
@@ -47,14 +48,14 @@
 
       "space f t": "terminal_panel::Toggle",
       "space l": "zed::Extensions",
-      "space L": "zed::Extensions"
-    }
+      "space L": "zed::Extensions",
+    },
   },
   {
     "context": "EmptyPane || SharedScreen || Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      "space f n": "workspace::NewFile"
-    }
+      "space f n": "workspace::NewFile",
+    },
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
@@ -68,11 +69,28 @@
       "space e": "pane::RevealInProjectPanel",
 
       "space -": "pane::SplitDown",
-      "space |": "pane::SplitRight"
-    }
+      "space |": "pane::SplitRight",
+
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+
+      "space w d": "pane::CloseActiveItem",
+
+      "H": "pane::ActivatePreviousItem",
+      "L": "pane::ActivateNextItem",
+      "space b b": "pane::AlternateFile",
+      "space b d": "pane::CloseActiveItem",
+    },
   },
   {
-    "context": "Editor && vim_mode == normal || vim_mode == visual && !VimWaiting && !menu",
+    "context": "Editor && (vim_mode == normal || vim_mode == visual || vim_mode == insert) && !VimWaiting && !menu",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+    },
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "B": ["workspace::SendKeystrokes", "^"],
       "E": ["workspace::SendKeystrokes", "$"],
@@ -81,27 +99,26 @@
 
       "c": ["workspace::SendKeystrokes", "\" _ c"],
       "C": ["workspace::SendKeystrokes", "\" _ C"],
-      // "d": ["workspace::SendKeystrokes", "\" _ d"],
-      // "D": ["workspace::SendKeystrokes", "\" _ D"],
       "s": ["workspace::SendKeystrokes", "\" _ s"],
       "S": ["workspace::SendKeystrokes", "\" _ S"],
       "x": ["workspace::SendKeystrokes", "\" _ x"],
       "X": ["workspace::SendKeystrokes", "\" _ X"],
-
-      "g c": "editor::ToggleComments"
-    }
+    },
   },
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
-      "p": ["workspace::SendKeystrokes", "\" _ d P"]
-    }
+      "p": ["workspace::SendKeystrokes", "\" _ d P"],
+
+      "<": "editor::Outdent",
+      ">": "editor::Indent",
+    },
   },
   {
     "context": "Editor && vim_mode == insert && !VimWaiting && !menu",
     "bindings": {
       "j k": "vim::NormalBefore",
-      "k j": "vim::NormalBefore"
-    }
-  }
+      "k j": "vim::NormalBefore",
+    },
+  },
 ]

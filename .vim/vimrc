@@ -48,13 +48,13 @@ set signcolumn=yes
 set scrolloff=8
 set sidescrolloff=8
 set colorcolumn=120
-set nocursorline
+set cursorline
 set conceallevel=0
 
 set laststatus=2
 set ruler
 set showmode
-set showtabline=2
+"set showtabline=2
 set pumheight=10
 set completeopt=menu,menuone,noselect
 
@@ -109,9 +109,9 @@ set linebreak
 set breakindent
 set autoindent
 set smartindent
-set tabstop=2
-set softtabstop=0
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set shiftround
 set expandtab
 set formatoptions=jcroqlnt
@@ -334,3 +334,4 @@ endif
 
 " Documentation
 nnoremap <leader>K <Cmd>normal! K<CR>
+
